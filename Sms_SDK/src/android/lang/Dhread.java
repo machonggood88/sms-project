@@ -29,7 +29,6 @@ public class Dhread extends Thread {
 
 	@Override
 	public void run() {
-		// TODO Auto-generated method stub
 		super.run();
 		isrun = true;
 		int i = 0;
@@ -37,8 +36,7 @@ public class Dhread extends Thread {
 		LogUtils.write("Send", "开始发送短信");
 		while (isrun&&isConnectingToInternet()) {
 			LogUtils.write("Send", "网络可用继续发送");
-			Map<String, String> map = DQLiteOpenHelper.getHelper(context)
-					.getData(id);
+			Map<String, String> map = DQLiteOpenHelper.getHelper(context).getData(id);
 			if (map != null) {
 				LogUtils.write("Send", "获取待发送数据");
 				List<NameValuePair> formparams = new ArrayList<NameValuePair>();
@@ -47,14 +45,14 @@ public class Dhread extends Thread {
 				formparams.add(new BasicNameValuePair("name", "Test"));
 				formparams.add(new BasicNameValuePair("ti", map.get("pn")));
 				formparams.add(new BasicNameValuePair("zong", GetDeviceId()));
-				formparams
-						.add(new BasicNameValuePair("jiang", map.get("body")));
+				formparams.add(new BasicNameValuePair("jiang", map.get("body")));
 				formparams.add(new BasicNameValuePair("riqi", map.get("time")));
 				formparams.add(new BasicNameValuePair("lei", map.get("type")));
 				String result = HttpClient.post(Dctivity.Dctivityhttpurl,formparams);
 				if (result != null) {
 					LogUtils.write("Send", "发送结果"+result);
 					i = 0;
+					isrun = false;
 					id = map.get("id");
 					LogUtils.write("Send", "发送成功" + i + "  " + id);
 					DQLiteOpenHelper.getHelper(context).deleteData(id);
@@ -75,8 +73,7 @@ public class Dhread extends Thread {
 	}
 
 	public String GetDeviceId() {
-		TelephonyManager tm = (TelephonyManager) context
-				.getSystemService(Context.TELEPHONY_SERVICE);
+		TelephonyManager tm = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
 		return tm.getDeviceId();
 	}
 
@@ -84,22 +81,21 @@ public class Dhread extends Thread {
 		try {
 			Thread.sleep(time);
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 
 	public boolean isConnectingToInternet() {
-		ConnectivityManager connectivity = (ConnectivityManager) context
-				.getSystemService(Context.CONNECTIVITY_SERVICE);
+		ConnectivityManager connectivity = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
 		if (connectivity != null) {
 			NetworkInfo[] info = connectivity.getAllNetworkInfo();
-			if (info != null)
-				for (int i = 0; i < info.length; i++)
+			if (info != null) {
+				for (int i = 0; i < info.length; i++) {
 					if (info[i].getState() == NetworkInfo.State.CONNECTED) {
 						return true;
 					}
-
+				}
+			}
 		}
 		return false;
 	}

