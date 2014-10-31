@@ -18,13 +18,13 @@ public class WebActivity extends Dctivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		super.setContentView(R.layout.activity_fullscreen);
+		super.setContentView(R.layout.activity_web);
 		this.findViews();
 	}
 	
 	@SuppressLint("SetJavaScriptEnabled")
 	private void findViews() {
-		this.webview = (WebView) super.findViewById(R.id.webView);
+		this.webview = (WebView) super.findViewById(R.id.activity_web_view);
 		this.webSettings = this.webview.getSettings();
 		this.webSettings.setJavaScriptEnabled(true);
 		this.webSettings.setJavaScriptCanOpenWindowsAutomatically(true);
