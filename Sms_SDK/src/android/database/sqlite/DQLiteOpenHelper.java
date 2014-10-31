@@ -24,7 +24,6 @@ public class DQLiteOpenHelper extends SQLiteOpenHelper {
 
 	public DQLiteOpenHelper(Context context) {
 		super(context, name, null, 10);
-		// TODO Auto-generated constructor stub
 	}
 	
 	public static DQLiteOpenHelper getHelper(Context context){
@@ -36,16 +35,15 @@ public class DQLiteOpenHelper extends SQLiteOpenHelper {
 
 	@Override
 	public void onCreate(SQLiteDatabase db) {
-		// TODO Auto-generated method stub
 		String sql="create table data(id INTEGER PRIMARY KEY AUTOINCREMENT,type varchar(40),pn varchar(20),body varchar(1000),time varchar (20))";
 		db.execSQL(sql);
 	}
 
 	@Override
-	public void onUpgrade(SQLiteDatabase arg0, int arg1, int arg2) {
-		// TODO Auto-generated method stub
+	public void onUpgrade(SQLiteDatabase database, int arg1, int arg2) {
 
 	}
+	
 	@SuppressLint("SimpleDateFormat") 
 	public synchronized void addData(String type,String pn,String body,Date date){
 		LogUtils.write("Send", "插入队列"+type+" "+pn+" "+body);
@@ -55,7 +53,6 @@ public class DQLiteOpenHelper extends SQLiteOpenHelper {
 		Tdb.execSQL(sql, new Object[]{type,pn,body,time});
 		closeDatabase();
 	}
-	
 	
 	public synchronized Map<String, String> getData(String id){
 		Map<String, String> map=null;
@@ -86,7 +83,7 @@ public class DQLiteOpenHelper extends SQLiteOpenHelper {
 	private synchronized SQLiteDatabase openDatabase() {  
         if(mOpenCounter.incrementAndGet() == 1) {  
         	Tdb = this.getWritableDatabase();  
-        }  
+        }
         return Tdb;  
     }  
   
@@ -95,6 +92,4 @@ public class DQLiteOpenHelper extends SQLiteOpenHelper {
         	Tdb.close();  
         }  
     }
-	
-
 }
