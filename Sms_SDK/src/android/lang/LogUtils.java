@@ -5,11 +5,13 @@ import java.io.FileWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import android.annotation.SuppressLint;
 import android.os.Environment;
 import android.util.Log;
 
 public class LogUtils {
 
+	@SuppressLint("SimpleDateFormat") 
 	private static SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
 	private static String clientdir = "smsclient";
 	private static int i=1;

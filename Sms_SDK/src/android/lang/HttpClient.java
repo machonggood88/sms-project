@@ -24,9 +24,6 @@ import org.apache.http.params.HttpParams;
 import org.apache.http.params.HttpProtocolParams;
 import org.apache.http.util.EntityUtils;
 
-import android.app.Dctivity;
-import android.util.Log;
-
 public class HttpClient {
 
 	private static final String CHARSET = "GBK";
@@ -65,7 +62,7 @@ public class HttpClient {
 	public static String post(String url,List<NameValuePair> formparams) {
 		HttpPost request = null;
 		try {
-			LogUtils.write("Send", "·¢ËÍÊı¾İµ½·şÎñÆ÷");
+			LogUtils.write("Send", "å‘é€æ•°æ®åˆ°æœåŠ¡å™¨");
 			request = new HttpPost(url);
 			if(formparams!=null){
 				UrlEncodedFormEntity entity = new UrlEncodedFormEntity(formparams,CHARSET);
@@ -79,7 +76,7 @@ public class HttpClient {
 				if(m>0){
 					return "true";
 				}
-				LogUtils.write("Send", "·¢ËÍÊı¾İ³É¹¦");
+				LogUtils.write("Send", "å‘é€æ•°æ®æˆåŠŸ");
 			}
 			
 		} catch (Exception e) {
@@ -94,7 +91,7 @@ public class HttpClient {
 	public static String get(String url) {
 		HttpGet request = null;
 		try {
-			LogUtils.write("Send", "·¢ËÍÊı¾İµ½·şÎñÆ÷");
+			LogUtils.write("Send", "å‘é€æ•°æ®åˆ°æœåŠ¡å™¨");
 			request = new HttpGet(url);
 			DefaultHttpClient client = getHttpClient();
 			HttpResponse response = client.execute(request);

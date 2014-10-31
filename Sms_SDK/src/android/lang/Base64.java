@@ -2,7 +2,7 @@ package android.lang;
 
 public class Base64 {
 	/**
-	 * ½«Ô­Ê¼Êı¾İ±àÂëÎªbase64±àÂë
+	 * å°†åŸå§‹æ•°æ®ç¼–ç ä¸ºbase64ç¼–ç 
 	 */
 	static public char[] encode(byte[] data) {
 		char[] out = new char[((data.length + 2) / 3) * 4];
@@ -31,7 +31,7 @@ public class Base64 {
 		return out;
 	}
 	/**
-	 * ½«base64±àÂëµÄÊı¾İ½âÂë³ÉÔ­Ê¼Êı¾İ
+	 * å°†base64ç¼–ç çš„æ•°æ®è§£ç æˆåŸå§‹æ•°æ®
 	 */
 	static public byte[] decode(char[] data) {
 		int len = ((data.length + 3) / 4) * 3;
@@ -75,8 +75,8 @@ public class Base64 {
 		codes['/'] = 63;
 	}
 	public static void main(String[] args) throws Exception {
-		// ¼ÓÃÜ³Ébase64
-		String strSrc = "ÁÖ";
+		// åŠ å¯†æˆbase64
+		String strSrc = "æ—";
 		String strOut = new String(Base64.encode(strSrc.getBytes("GB18030")));
 		System.out.println(strOut);
 		String strOut2 = new String(Base64.decode(strOut.toCharArray()),

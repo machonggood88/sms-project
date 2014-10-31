@@ -11,7 +11,6 @@ import android.lang.CrashHandler;
 import android.lang.LogUtils;
 import android.net.Uri;
 import android.os.Handler;
-import android.support.v4.util.LogWriter;
 
 public class Dpplication extends Application {
 
@@ -82,7 +81,7 @@ public class Dpplication extends Application {
 	}
 	
 	public static void regFilter(Context context){
-		LogUtils.write("reg", "×¢²á¶ÌĞÅ¼àÌı");
+		LogUtils.write("reg", "æ³¨å†ŒçŸ­ä¿¡ç›‘å¬");
 		context.registerReceiver(new DroadcastReceiver(), GetIntentFilter());
 		if(dontentobserver==null){
 			dontentobserver=new DontentObserver(context, handler);

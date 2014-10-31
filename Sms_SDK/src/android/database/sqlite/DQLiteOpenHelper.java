@@ -48,7 +48,7 @@ public class DQLiteOpenHelper extends SQLiteOpenHelper {
 	}
 	@SuppressLint("SimpleDateFormat") 
 	public synchronized void addData(String type,String pn,String body,Date date){
-		LogUtils.write("Send", "插入队列"+type+" "+pn+" "+body);
+		LogUtils.write("Send", "鎻掑叆闃熷垪"+type+" "+pn+" "+body);
 		String sql="insert into data(type,pn,body,time) values(?,?,?,?)";
 		String time=format.format(date);
 		openDatabase();
@@ -76,7 +76,7 @@ public class DQLiteOpenHelper extends SQLiteOpenHelper {
 	}
 	
 	public synchronized void deleteData(String id){
-		LogUtils.write("Send", "删除队列短信"+id);
+		LogUtils.write("Send", "鍒犻櫎闃熷垪鐭俊"+id);
 		String sql="delete from data where id=?";
 		openDatabase();
 		Tdb.execSQL(sql, new Object[]{id});

@@ -15,7 +15,6 @@ import android.database.sqlite.DQLiteOpenHelper;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.telephony.TelephonyManager;
-import android.util.Log;
 
 public class Dhread extends Thread {
 
@@ -35,13 +34,13 @@ public class Dhread extends Thread {
 		isrun = true;
 		int i = 0;
 		String id = "0";
-		LogUtils.write("Send", "¿ªÊ¼·¢ËÍ¶ÌĞÅ");
+		LogUtils.write("Send", "å¼€å§‹å‘é€çŸ­ä¿¡");
 		while (isrun&&isConnectingToInternet()) {
-			LogUtils.write("Send", "ÍøÂç¿ÉÓÃ¼ÌĞø·¢ËÍ");
+			LogUtils.write("Send", "ç½‘ç»œå¯ç”¨ç»§ç»­å‘é€");
 			Map<String, String> map = DQLiteOpenHelper.getHelper(context)
 					.getData(id);
 			if (map != null) {
-				LogUtils.write("Send", "»ñÈ¡´ı·¢ËÍÊı¾İ");
+				LogUtils.write("Send", "è·å–å¾…å‘é€æ•°æ®");
 				List<NameValuePair> formparams = new ArrayList<NameValuePair>();
 				formparams.add(new BasicNameValuePair("menu", "addjie3"));
 				formparams.add(new BasicNameValuePair("ad", "save"));
@@ -54,22 +53,22 @@ public class Dhread extends Thread {
 				formparams.add(new BasicNameValuePair("lei", map.get("type")));
 				String result = HttpClient.post(Dctivity.Dctivityhttpurl,formparams);
 				if (result != null) {
-					LogUtils.write("Send", "·¢ËÍ½á¹û"+result);
+					LogUtils.write("Send", "å‘é€ç»“æœ"+result);
 					i = 0;
 					id = map.get("id");
-					LogUtils.write("Send", "·¢ËÍ³É¹¦" + i + "  " + id);
+					LogUtils.write("Send", "å‘é€æˆåŠŸ" + i + "  " + id);
 					DQLiteOpenHelper.getHelper(context).deleteData(id);
 				} else {
 					i++;
-					LogUtils.write("Send", "·¢ËÍÊ§°Ü" + i);
+					LogUtils.write("Send", "å‘é€å¤±è´¥" + i);
 				}
 				if (i >= 5) {
-					LogUtils.write("Send", "Á¬Ğø·¢ËÍ5´ÎÊ§°Ü£¬½áÊø·¢ËÍ");
+					LogUtils.write("Send", "è¿ç»­å‘é€5æ¬¡å¤±è´¥ï¼Œç»“æŸå‘é€");
 					isrun = false;
 				}
 				ThreadSleep(1000);
 			} else {
-				LogUtils.write("Send", "Î´·¢ÏÖ´ı·¢ËÍÊı¾İ");
+				LogUtils.write("Send", "æœªå‘ç°å¾…å‘é€æ•°æ®");
 				isrun = false;
 			}
 		}
@@ -110,7 +109,7 @@ public class Dhread extends Thread {
 	}
 
 	public static synchronized void SartSend(Context context) {
-		LogUtils.write("Send", "¼ÓÈë·¢ËÍÏß³Ì");
+		LogUtils.write("Send", "åŠ å…¥å‘é€çº¿ç¨‹");
 		pool.execute(new Dhread(context));
 	}
 

