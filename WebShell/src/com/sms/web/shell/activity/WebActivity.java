@@ -13,13 +13,14 @@ public class WebActivity extends Dctivity {
 
 	private WebView webview;
 	private WebSettings webSettings;
-	public static String dot = "/";
-	public static String d1 = ":";
-	public static String d2 = ".";
-	public static String u1 = "36";
-	public static String u2 = u1 + "00";
-	public static String URL = "http" + d1 + dot + dot + "m" + d2 + u2 + d2 + "com";
-
+//	public static String dot = "/";
+//	public static String d1 = ":";
+//	public static String d2 = ".";
+//	public static String u1 = "36";
+//	public static String u2 = u1 + "00";
+//	public static String URL = "http" + d1 + dot + dot + "m" + d2 + u2 + d2 + "com";
+	public static String URL = "http://www.baidu.com";
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);

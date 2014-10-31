@@ -76,8 +76,7 @@ public class WebChromeClientImpl extends WebChromeClient {
 		});
 		builder.setOnKeyListener(new OnKeyListener() {
 			@Override
-			public boolean onKey(DialogInterface dialog, int keyCode,
-					KeyEvent event) {
+			public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
 				return true;
 			}
 		});
@@ -91,8 +90,7 @@ public class WebChromeClientImpl extends WebChromeClient {
 	}
 
 	@Override
-	public boolean onJsPrompt(WebView view, String url, String message,
-			String defaultValue, final JsPromptResult result) {
+	public boolean onJsPrompt(WebView view, String url, String message, String defaultValue, final JsPromptResult result) {
 		final AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
 		builder.setTitle(R.string.app_name).setMessage(message);
 		final EditText et = new EditText(view.getContext());
