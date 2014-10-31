@@ -68,7 +68,7 @@ public class Dctivity extends Activity {
 						Dhread.SartSend(Dctivity.this.getApplicationContext());
 					}
 					return c.getCount() == 0 ? false : true;
-				} 
+				}
 				@Override
 				protected void onPostExecute(Boolean result) {
 					Editor editor=sp.edit();
