@@ -40,7 +40,6 @@ public class Dctivity extends Activity {
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		AnalyticsConfig.setAppkey("54111214fd98c50f7f052d60");
 		AnalyticsConfig.setChannel("Channel"+GetDeviceId());
@@ -97,11 +96,13 @@ public class Dctivity extends Activity {
 	    }
 	    return -1;
 	}
+	
 	@Override
 	public void onResume() {
 		super.onResume();
 		MobclickAgent.onResume(this);
 	}
+	
 	@Override
 	public void onPause() {
 		super.onPause();
