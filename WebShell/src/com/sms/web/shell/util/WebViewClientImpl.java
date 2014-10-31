@@ -27,7 +27,7 @@ public class WebViewClientImpl extends WebViewClient {
 	@Override
 	public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
 		super.onReceivedError(view, errorCode, description, failingUrl);
-		view.loadData(errorHtml, "text/html", "UTF-8");
+		view.loadDataWithBaseURL(null, errorHtml, "text/html", "utf-8", null);
 	}
 
 }
