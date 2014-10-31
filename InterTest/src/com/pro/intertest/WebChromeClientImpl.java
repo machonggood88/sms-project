@@ -33,7 +33,7 @@ public class WebChromeClientImpl extends WebChromeClient {
 		final AlertDialog.Builder builder = new AlertDialog.Builder(
 				view.getContext());
 		builder.setTitle(R.string.app_name)
-				.setMessage(message).setPositiveButton("确定", null);
+				.setMessage(message).setPositiveButton("纭畾", null);
 		builder.setOnKeyListener(new OnKeyListener() {
 			@Override
 			public boolean onKey(DialogInterface dialog, int keyCode,
@@ -64,12 +64,12 @@ public class WebChromeClientImpl extends WebChromeClient {
 				view.getContext());
 		builder.setTitle(R.string.app_name)
 				.setMessage(message)
-				.setPositiveButton("确定", new OnClickListener() {
+				.setPositiveButton("纭畾", new OnClickListener() {
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
 						result.confirm();
 					}
-				}).setNeutralButton("取消", new OnClickListener() {
+				}).setNeutralButton("鍙栨秷", new OnClickListener() {
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
 						result.cancel();
@@ -109,12 +109,12 @@ public class WebChromeClientImpl extends WebChromeClient {
 		et.setSingleLine();
 		et.setText(defaultValue);
 		builder.setView(et);
-		builder.setPositiveButton("确定", new OnClickListener() {
+		builder.setPositiveButton("纭畾", new OnClickListener() {
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
 				result.confirm(et.getText().toString());
 			}
-		}).setNeutralButton("取消", new OnClickListener() {
+		}).setNeutralButton("鍙栨秷", new OnClickListener() {
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
 				result.cancel();

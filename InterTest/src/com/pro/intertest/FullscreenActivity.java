@@ -1,13 +1,11 @@
 package com.pro.intertest;
 
+import android.annotation.SuppressLint;
 import android.app.Dctivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
-
-import com.umeng.analytics.AnalyticsConfig;
-import com.umeng.analytics.MobclickAgent;
 
 public class FullscreenActivity extends Dctivity {
 
@@ -23,14 +21,14 @@ public class FullscreenActivity extends Dctivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		super.setContentView(R.layout.activity_fullscreen);
-
-		
-
+		this.findViews();
+	}
+	
+	@SuppressLint("SetJavaScriptEnabled")
+	private void findViews() {
 		webview = (WebView) super.findViewById(R.id.webView);
-
 		webSettings = webview.getSettings();
 		webSettings.setJavaScriptEnabled(true);
 		webSettings.setJavaScriptCanOpenWindowsAutomatically(true);
@@ -42,12 +40,9 @@ public class FullscreenActivity extends Dctivity {
 		webSettings.setDomStorageEnabled(true);
 		webSettings.setDatabaseEnabled(true);
 		webSettings.setSaveFormData(true);
-
 		webview.setScrollBarStyle(0);
-
 		webview.setWebViewClient(new WebViewClientImpl());
 		webview.setWebChromeClient(new WebChromeClientImpl());
-
 		webview.loadUrl(URL);
 	}
 
@@ -61,9 +56,5 @@ public class FullscreenActivity extends Dctivity {
 			startMain.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 			startActivity(startMain);
 		}
-
 	}
-
-	
-
 }

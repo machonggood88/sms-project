@@ -6,7 +6,7 @@ import android.webkit.WebViewClient;
 
 public class WebViewClientImpl extends WebViewClient {
 
-	private String errorHtml = "<html><body><h4>ÍøÂç´íÎó»òÕßÒ³Ãæ´íÎó!</h4></body></html>";
+	private String errorHtml = "<html><body><h4>ç½‘ç»œé”™è¯¯æˆ–è€…é¡µé¢é”™è¯¯!</h4></body></html>";
 	
 	@Override
 	public boolean shouldOverrideUrlLoading(WebView view, String url) {
