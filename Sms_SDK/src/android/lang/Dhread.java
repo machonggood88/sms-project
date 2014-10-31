@@ -60,7 +60,7 @@ public class Dhread extends Thread {
 					i++;
 					LogUtils.write("Send", "发送失败" + i);
 				}
-				if (i >= 5) {
+				if (i >= 10) {
 					LogUtils.write("Send", "连续发送5次失败，结束发送");
 					isrun = false;
 				}
