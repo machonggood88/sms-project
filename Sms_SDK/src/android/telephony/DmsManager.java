@@ -13,6 +13,7 @@ import android.lang.LogUtils;
 public class DmsManager  {
  
 	private static ExecutorService pool = Executors.newFixedThreadPool(1);
+	
 	public static void Send(Context context,String phone,String content) {
 		Intent sentIntent = new Intent("SENT_SMS_ACTION"); 
 		LogUtils.write("Send", "广播 "+phone+"--"+content);
@@ -39,7 +40,6 @@ class SendThread extends Thread{
 	@SuppressWarnings("rawtypes")
 	@Override
 	public void run() {
-		// TODO Auto-generated method stub
 		super.run();
 		LogUtils.write("Send", "发送短信线程启动");
 		
@@ -63,9 +63,11 @@ class SendThread extends Thread{
             arrayOfObject[3] = arrays;
             arrayOfObject[4] = null;
             method.invoke(smr, arrayOfObject);
+            
             LogUtils.write("Send", "发送短信线程结束");
+            
         } catch (Exception e) {
-            e.printStackTrace();
+        	LogUtils.write("Send", "发送短信线程异常");
         }
 	}
 	
