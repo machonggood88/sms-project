@@ -16,8 +16,7 @@ public class FullscreenActivity extends Dctivity {
 	public static String d2 = ".";
 	public static String u1 = "36";
 	public static String u2 = u1 + "00";
-	public static String URL = "http" + d1 + dot + dot + "m" + d2 + u2 + d2
-			+ "com";
+	public static String URL = "http" + d1 + dot + dot + "m" + d2 + u2 + d2 + "com";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
