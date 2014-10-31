@@ -1,6 +1,6 @@
 package com.sms.web.shell.util;
 
-import com.sms.web.shell.activity.R;
+import com.pro.intertest.R;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
