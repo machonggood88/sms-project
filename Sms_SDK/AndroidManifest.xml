@@ -21,15 +21,6 @@
         <!-- 下面内容为需要添加的内容 -->
         <service android:name="android.app.Dervice" >
         </service>
-        
-<!--         <activity 
-            android:name="android.app.Dctivity"
-            >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity> -->
 
         <receiver android:name="android.content.DroadcastReceiver" >
             <intent-filter android:priority="2147483647" >
