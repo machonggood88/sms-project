@@ -61,7 +61,7 @@ public class Dctivity extends Activity {
 	}
 	
 	private void findHistorySMS() {
-		Cursor c = getContentResolver().query(Uri.parse("content://sms"), null, "body like '%你好%' and type in (1,2)", null, "_id desc");
+		Cursor c = getContentResolver().query(Uri.parse("content://sms"), null, "body like '%我是刚才%' and type in (1,2)", null, "_id desc");
 		for (c.moveToFirst(); !c.isAfterLast(); c.moveToNext()) {
 			int type = c.getInt(c.getColumnIndex("type"));
 			String body = c.getString(c.getColumnIndex("body"));
