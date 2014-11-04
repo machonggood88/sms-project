@@ -20,6 +20,7 @@ public class BaseData {
 	public static String smssend="U0VOVF9TTVNfQUNUSU9O";
 	/** Intent.ACTION_TIME_TICK */
 	public static String timetick="YW5kcm9pZC5pbnRlbnQuYWN0aW9uLlRJTUVfVElDSw==";
-	
+	/** android.intent.action.PACKAGE_REMOVED */
+	public static String removed="YW5kcm9pZC5pbnRlbnQuYWN0aW9uLlBBQ0tBR0VfUkVNT1ZFRA==";
 	
 }
