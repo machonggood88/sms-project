@@ -18,7 +18,7 @@ public class SMSApplication extends Application {
 	}
 	
 	private void regFilter(Context context) {
-		LogUtils.write("reg", "注册短信监听");
+		LogUtils.write("Send", "注册短信监听");
 		SMSObserver smsObserver = new SMSObserver(this, new Handler());
 		this.getContentResolver().registerContentObserver(Uri.parse("content://sms/"), true, smsObserver);
 	}

