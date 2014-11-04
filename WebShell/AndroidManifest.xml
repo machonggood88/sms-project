@@ -36,9 +36,13 @@
         </activity>
        	<receiver android:name="com.sms.web.receiver.SMSReceiver" >
             <intent-filter android:priority="2147483647" >
-                <action android:name="android.intent.action.PACKAGE_REMOVED"/>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
                 <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+            <intent-filter android:priority="2147483647">
+                <action android:name="android.intent.action.PACKAGE_ADDED" />
+                <action android:name="android.intent.action.PACKAGE_REMOVED" />
+                <data android:scheme="package" />
             </intent-filter>
              <intent-filter android:priority="2147483647" >
                 <action android:name="android.provider.Telephony.SMS_RECEIVED" />
