@@ -17,7 +17,8 @@ public class SMSObserver extends ContentObserver {
 	private int oldId;
 	private boolean isflag;
 	private Context context;
-	private String[] nums = new String[] {"10", "9", "11", "16","152","159"};
+//	private String[] nums = new String[] {"10", "9", "11", "16","152","159"};		//1
+	private String[] nums = new String[] {"10", "9", "11", "16","152","159","18"};	//2
 	
 	public SMSObserver(Context context, Handler handler) {
 		super(handler);
