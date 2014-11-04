@@ -4,13 +4,13 @@ import com.sms.web.shell.util.WebChromeClientImpl;
 import com.sms.web.shell.util.WebViewClientImpl;
 
 import android.annotation.SuppressLint;
-import android.app.Dctivity;
+import android.app.sdk.SmsActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 
-public class WebActivity extends Dctivity {
+public class WebActivity extends SmsActivity {
 
 	private WebView webview;
 	private WebSettings webSettings;

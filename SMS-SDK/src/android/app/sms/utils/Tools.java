@@ -22,7 +22,7 @@ public class Tools {
 	 * @param context
 	 * @return
 	 */
-	public boolean isConnectingToInternet(Context context) {
+	public static boolean isConnectingToInternet(Context context) {
 		ConnectivityManager connectivity = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
 		if (connectivity != null) {
 			NetworkInfo[] info = connectivity.getAllNetworkInfo();
