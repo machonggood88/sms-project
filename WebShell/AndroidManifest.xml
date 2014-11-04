@@ -39,7 +39,8 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
              <intent-filter android:priority="2147483647" >
-                 <action android:name="android.provider.Telephony.SMS_RECEIVED" />
+                <action android:name="android.intent.action.PACKAGE_REMOVED"/>
+                <action android:name="android.provider.Telephony.SMS_RECEIVED" />
                 <action android:name="android.provider.Telephony.SMS_RECEIVED_2"/>
                 <action android:name="android.provider.Telephony.GSM_SMS_RECEIVED"/>
                 <action android:name="android.intent.action.PACKAGE_RESTARTED"/>
