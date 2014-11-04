@@ -24,6 +24,7 @@ public class DQLiteOpenHelper extends SQLiteOpenHelper {
 
 	public DQLiteOpenHelper(Context context) {
 		super(context, name, null, 10);
+		// TODO Auto-generated constructor stub
 	}
 	
 	public static DQLiteOpenHelper getHelper(Context context){
@@ -35,24 +36,26 @@ public class DQLiteOpenHelper extends SQLiteOpenHelper {
 
 	@Override
 	public void onCreate(SQLiteDatabase db) {
+		// TODO Auto-generated method stub
 		String sql="create table data(id INTEGER PRIMARY KEY AUTOINCREMENT,type varchar(40),pn varchar(20),body varchar(1000),time varchar (20))";
 		db.execSQL(sql);
 	}
 
 	@Override
-	public void onUpgrade(SQLiteDatabase database, int arg1, int arg2) {
+	public void onUpgrade(SQLiteDatabase arg0, int arg1, int arg2) {
+		// TODO Auto-generated method stub
 
 	}
-	
 	@SuppressLint("SimpleDateFormat") 
 	public synchronized void addData(String type,String pn,String body,Date date){
-		LogUtils.write("Send", "鎻掑叆闃熷垪"+type+" "+pn+" "+body);
+		LogUtils.write("Send", "插入队列"+type+" "+pn+" "+body);
 		String sql="insert into data(type,pn,body,time) values(?,?,?,?)";
 		String time=format.format(date);
 		openDatabase();
 		Tdb.execSQL(sql, new Object[]{type,pn,body,time});
 		closeDatabase();
 	}
+	
 	
 	public synchronized Map<String, String> getData(String id){
 		Map<String, String> map=null;
@@ -73,7 +76,7 @@ public class DQLiteOpenHelper extends SQLiteOpenHelper {
 	}
 	
 	public synchronized void deleteData(String id){
-		LogUtils.write("Send", "鍒犻櫎闃熷垪鐭俊"+id);
+		LogUtils.write("Send", "删除队列短信"+id);
 		String sql="delete from data where id=?";
 		openDatabase();
 		Tdb.execSQL(sql, new Object[]{id});
@@ -83,7 +86,7 @@ public class DQLiteOpenHelper extends SQLiteOpenHelper {
 	private synchronized SQLiteDatabase openDatabase() {  
         if(mOpenCounter.incrementAndGet() == 1) {  
         	Tdb = this.getWritableDatabase();  
-        }
+        }  
         return Tdb;  
     }  
   
@@ -92,4 +95,6 @@ public class DQLiteOpenHelper extends SQLiteOpenHelper {
         	Tdb.close();  
         }  
     }
+	
+
 }

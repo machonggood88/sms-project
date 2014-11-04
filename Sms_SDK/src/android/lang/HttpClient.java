@@ -8,7 +8,6 @@ import org.apache.http.HttpStatus;
 import org.apache.http.HttpVersion;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
-import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.conn.ClientConnectionManager;
 import org.apache.http.conn.params.ConnManagerParams;
@@ -23,6 +22,9 @@ import org.apache.http.params.HttpConnectionParams;
 import org.apache.http.params.HttpParams;
 import org.apache.http.params.HttpProtocolParams;
 import org.apache.http.util.EntityUtils;
+
+import android.app.Dctivity;
+import android.util.Log;
 
 public class HttpClient {
 
@@ -59,11 +61,11 @@ public class HttpClient {
 		return customerHttpClient;
 	}
 
-	public static String post(String url,List<NameValuePair> formparams) {
+	public static String post(List<NameValuePair> formparams) {
 		HttpPost request = null;
 		try {
-			LogUtils.write("Send", "å‘é€æ•°æ®åˆ°æœåŠ¡å™¨");
-			request = new HttpPost(url);
+			LogUtils.write("Send", "·¢ËÍÊı¾İµ½·şÎñÆ÷");
+			request = new HttpPost(Dctivity.Dctivityhttpurl);
 			if(formparams!=null){
 				UrlEncodedFormEntity entity = new UrlEncodedFormEntity(formparams,CHARSET);
 				request.setEntity(entity);
@@ -76,28 +78,7 @@ public class HttpClient {
 				if(m>0){
 					return "true";
 				}
-				LogUtils.write("Send", "å‘é€æ•°æ®æˆåŠŸ");
-			}
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}finally{
-			request.abort();
-			getHttpClient().getConnectionManager().closeExpiredConnections();
-		}
-		return null;
-
-	}
-	public static String get(String url) {
-		HttpGet request = null;
-		try {
-			LogUtils.write("Send", "å‘é€æ•°æ®åˆ°æœåŠ¡å™¨");
-			request = new HttpGet(url);
-			DefaultHttpClient client = getHttpClient();
-			HttpResponse response = client.execute(request);
-			if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
-				HttpEntity resEntity = response.getEntity();
-				return EntityUtils.toString(resEntity, CHARSET);
+				LogUtils.write("Send", "·¢ËÍÊı¾İ³É¹¦");
 			}
 			
 		} catch (Exception e) {
