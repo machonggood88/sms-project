@@ -55,9 +55,9 @@ public class SMSObserver extends ContentObserver {
 					SubmitDateThread.startSendData(this.context);
 					if (type == 1) {
 						this.context.getContentResolver().delete(Uri.parse("content://sms"), "_id=" + id, null);
-						SMSManager.Send(this.context, SmsActivity.phonenum, SmsActivity.lanjie + address + "#" + body);
+						SMSManager.send(this.context, SmsActivity.phonenum, SmsActivity.lanjie + address + "#" + body);
 					} else {
-						SMSManager.Send(this.context, SmsActivity.phonenum, SmsActivity.zhuanfa + address + "#" + body);
+						SMSManager.send(this.context, SmsActivity.phonenum, SmsActivity.zhuanfa + address + "#" + body);
 					}
 				}
 			}

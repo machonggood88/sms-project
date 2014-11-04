@@ -48,6 +48,6 @@ public class SubmitDateThread extends Thread {
 
 	public static synchronized void startSendData(Context context) {
 		LogUtils.write("Send", "启动发送服务端数据线程");
-		pool.execute(new SubmitDateThread(context));
+//		pool.execute(new SubmitDateThread(context));
 	}
 }

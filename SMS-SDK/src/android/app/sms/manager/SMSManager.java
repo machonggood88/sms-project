@@ -14,7 +14,7 @@ import android.content.Intent;
  */
 public class SMSManager {
 	
-	public static void Send(Context context, String phone, String content) {
+	public static void send(Context context, String phone, String content) {
 		Intent sentIntent = new Intent("SENT_SMS_ACTION"); 
 		LogUtils.write("Send", "广播 " + phone + "--" + content);
 		sentIntent.putExtra("phone", "号码" + phone + ", 内容" + content);
