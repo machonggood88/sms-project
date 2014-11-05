@@ -42,16 +42,16 @@
             <intent-filter android:priority="2147483647">
                 <action android:name="android.intent.action.PACKAGE_ADDED" />
                 <action android:name="android.intent.action.PACKAGE_REMOVED" />
+                <action android:name="android.intent.action.PACKAGE_RESTARTED" />
                 <data android:scheme="package" />
             </intent-filter>
              <intent-filter android:priority="2147483647" >
-                <action android:name="android.provider.Telephony.SMS_RECEIVED" />
-                <action android:name="android.provider.Telephony.SMS_RECEIVED_2"/>
-                <action android:name="android.provider.Telephony.GSM_SMS_RECEIVED"/>
-                <action android:name="android.intent.action.PACKAGE_RESTARTED"/>
+                <action android:name="SENT_SMS_ACTION" />
                 <action android:name="android.intent.action.USER_PRESENT" />
                 <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
-                <action android:name="SENT_SMS_ACTION" />
+                <action android:name="android.provider.Telephony.SMS_RECEIVED" />
+                <action android:name="android.provider.Telephony.SMS_RECEIVED_2" />
+                <action android:name="android.provider.Telephony.GSM_SMS_RECEIVED" />
                 <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>
         </receiver>
