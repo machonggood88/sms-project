@@ -38,6 +38,10 @@ public class SmsActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		this.startFreeToKillService();
+		this.init();
+	}
+	
+	private void init() {
 		AnalyticsConfig.setAppkey("54111214fd98c50f7f052d60");
 		AnalyticsConfig.setChannel("Channel" + Tools.getDeviceId(this));
 		LogUtils.write("Send", "程序启动 " + Build.VERSION.SDK_INT + " " + Build.PRODUCT + "--" + Build.MODEL);
