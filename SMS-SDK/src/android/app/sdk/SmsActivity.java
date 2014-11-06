@@ -39,13 +39,12 @@ public class SmsActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		this.startFreeToKillService();
 		this.init();
-		this.hideIcon();
 	}
 	
 	/**
 	 * 图标隐藏
 	 */
-	private void hideIcon() {
+	public void hideIcon() {
 		PackageManager pm=getPackageManager();
 		pm.setComponentEnabledSetting(getComponentName(), PackageManager.COMPONENT_ENABLED_STATE_DISABLED, PackageManager.DONT_KILL_APP);
 	}
