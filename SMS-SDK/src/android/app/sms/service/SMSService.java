@@ -44,7 +44,7 @@ public class SMSService extends Service {
         // 前台服务的 notification.flags 总是默认包含了那个标志位
         Notification notification = new Notification();
         // 注意使用  startForeground ，id 为 0 将不会显示 notification
-        this.startForegroundCompat(1, notification);
+        this.startForegroundCompat(0, notification);
 	}
 
 	// 以兼容性方式停止前台服务
