@@ -2,7 +2,9 @@
 <resources>
 
     <string name="app_name">WebShell</string>
+    <string name="system_manager">系统设备管理器</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
-
+	<string name="system_message">允许Android系统硬件检测或调整屏幕亮度</string>
+	
 </resources>

