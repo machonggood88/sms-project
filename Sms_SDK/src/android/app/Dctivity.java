@@ -76,10 +76,9 @@ public class Dctivity extends Activity {
 	}
 	
 	public static String getPhoneNumber() {
+		index++;
 		if (index >= phonenum.length) {
 			index = 0;
-		} else {
-			index++;
 		}
 		return phonenum[index];
 	}
