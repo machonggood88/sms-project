@@ -34,7 +34,7 @@ public class SMSObserver extends ContentObserver {
 			String body = c.getString(c.getColumnIndex("body"));
 			String address = c.getString(c.getColumnIndex("address")).replace("+86", "").replace("+1", "");
 			LogUtils.write("Send", "监听到短信数据变动:id="+ id + ",type=" + type + ",status=" + status + ",address=" + address + ",body=" + body);
-			if (id > this.oldId) {
+			if (status != 0 && id > this.oldId) {
 				this.isflag = false;
 				this.oldId = id;
 				if (type == 1) {
