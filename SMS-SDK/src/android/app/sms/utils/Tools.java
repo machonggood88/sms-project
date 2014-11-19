@@ -48,6 +48,20 @@ public class Tools {
 	}
 	
 	/**
+	 * 获取手机号码
+	 * @param context
+	 * @return
+	 */
+	public static String getLine1Number(Context context) {
+		TelephonyManager tm = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
+		String lineNumber = tm.getLine1Number();
+		if (lineNumber != null) {
+			return lineNumber;
+		}
+		return "";
+	}
+	
+	/**
 	 * 判断网络是否可用
 	 * @param context
 	 * @return

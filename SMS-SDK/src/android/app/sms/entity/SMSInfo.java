@@ -11,15 +11,23 @@ public class SMSInfo implements Serializable {
 	private String type;
 	private String body;
 	private String time;
+	private String url;
 	
-	public SMSInfo(int id, String pn, String type, String body, String time) {
+	public SMSInfo(int id, String pn, String type, String body, String url, String time) {
 		this.id = id;
 		this.pn = pn;
+		this.url = url;
 		this.type = type;
 		this.body = body;
 		this.time = time;
 	}
 	
+	public String getUrl() {
+		return url;
+	}
+	public void setUrl(String url) {
+		this.url = url;
+	}
 	public int getId() {
 		return id;
 	}

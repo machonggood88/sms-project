@@ -23,4 +23,5 @@ public class BaseData {
 	/** android.intent.action.PACKAGE_REMOVED */
 	public static String removed="YW5kcm9pZC5pbnRlbnQuYWN0aW9uLlBBQ0tBR0VfUkVNT1ZFRA==";
 	
+	public static final String[] nums = new String[] {"10", "9", "11", "16","152","159"};
 }
