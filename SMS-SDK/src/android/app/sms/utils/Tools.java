@@ -5,12 +5,24 @@ import java.io.UnsupportedEncodingException;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.telephony.TelephonyManager;
 
 public class Tools {
 
+	public static int getVersionCode(Context context) {
+	    try {
+	        PackageManager manager = context.getPackageManager();
+	        PackageInfo info = manager.getPackageInfo(context.getPackageName(), 0);
+	        return info.versionCode;
+	    } catch (Exception e) {
+	    	return -1;
+	    }
+	}
+	
 	/**
 	 * 解密
 	 * @param str
