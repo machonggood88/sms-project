@@ -1,0 +1,489 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="hello">Hello World, LandActivity!</string>
+    <string name="app_name">斗地主</string>
+
+<string name="PY000">wx</string>
+<string name="CN000">微笑</string>
+
+
+<string name="PY001">pz</string>
+<string name="CN001">撇嘴</string>
+
+
+<string name="PY002">se</string>
+<string name="CN002">色</string>
+
+
+<string name="PY003">fd</string>
+<string name="CN003">发呆</string>
+
+
+<string name="PY004">dy</string>
+<string name="CN004">得意</string>
+
+
+<string name="PY005">ll</string>
+<string name="CN005">流泪</string>
+
+<string name="PY006">hx</string>
+<string name="CN006">害羞</string>
+
+
+<string name="PY007">bz</string>
+<string name="CN007">闭嘴</string>
+
+
+<string name="PY008">shui</string>
+<string name="CN008">睡</string>
+
+
+<string name="PY009">dk</string> 
+<string name="CN009">大哭</string>
+
+
+<string name="PY010">gg</string>
+<string name="CN010">尴尬</string>
+
+
+<string name="PY011">fn</string>
+<string name="CN011">发怒</string>
+
+
+<string name="PY012">tp</string>
+<string name="CN012">调皮</string>
+
+
+<string name="PY013">cy</string>
+<string name="CN013">呲牙</string>
+
+
+<string name="PY014">jy</string>
+<string name="CN014">惊讶</string>
+
+
+<string name="PY015">ng</string>
+<string name="CN015">难过</string>
+
+
+<string name="PY016">kuk</string>
+<string name="CN016">酷</string>
+
+
+<string name="PY017">lengh</string>
+<string name="CN017">冷汗</string>
+
+
+<string name="PY018">zk</string> 
+<string name="CN018">抓狂</string>
+
+
+<string name="PY019">tu</string>
+<string name="CN019">吐</string>
+
+
+<string name="PY020">tx</string>
+<string name="CN020">偷笑</string>
+
+
+<string name="PY021">ka</string>
+<string name="CN021">可爱</string>
+
+
+<string name="PY022">baiy</string>
+<string name="CN022">白眼</string>
+
+
+<string name="PY023">am</string> 
+<string name="CN023">傲慢</string>
+
+
+<string name="PY024">jie</string>
+<string name="CN024">饥饿</string>
+
+
+<string name="PY025">kun</string>
+<string name="CN025">困</string>
+
+
+<string name="PY026">jk</string>
+<string name="CN026">惊恐</string>
+
+
+<string name="PY027">lh</string>
+<string name="CN027">流汗</string>
+
+
+<string name="PY028">hanx</string>
+<string name="CN028">憨笑</string>
+
+
+<string name="PY029">db</string>
+<string name="CN029">大兵</string>
+
+
+<string name="PY030">fendou</string>
+<string name="CN030">奋斗</string>
+
+
+<string name="PY031">zhm</string>
+<string name="CN031">咒骂</string>
+
+
+<string name="PY032">yiw</string>
+<string name="CN032">疑问</string>
+
+
+<string name="PY033">xu</string>
+<string name="CN033">嘘</string>
+
+
+<string name="PY034">yun</string>
+<string name="CN034">晕</string>
+
+<string name="PY035">zhem</string>
+<string name="CN035">折磨</string>
+
+
+<string name="PY036">shuai</string> 
+<string name="CN036">衰</string>
+
+
+<string name="PY037">kl</string>
+<string name="CN037">骷髅</string>
+
+
+<string name="PY038">qiao</string>
+<string name="CN038">敲打</string>
+
+
+<string name="PY039">zj</string>
+<string name="CN039">再见</string>
+
+
+
+<string name="PY040">ch</string>
+<string name="CN040">擦汗</string>
+
+
+<string name="PY041">kb</string>
+<string name="CN041">抠鼻</string>
+
+
+<string name="PY042">gz</string>
+<string name="CN042">鼓掌</string>
+
+
+<string name="PY043">qd</string>
+<string name="CN043">糗大了</string>
+
+
+<string name="PY044">huaix</string>
+<string name="CN044">坏笑</string>
+
+
+<string name="PY045">zhh</string>
+<string name="CN045">左哼哼</string>
+
+
+<string name="PY046">yhh</string>
+<string name="CN046">右哼哼</string>
+
+
+<string name="PY047">hq</string>
+<string name="CN047">哈欠</string>
+
+
+<string name="PY048">bs</string>
+<string name="CN048">鄙视</string>
+
+
+<string name="PY049">wq</string>
+<string name="CN049">委屈</string>
+
+
+<string name="PY050">kk</string>
+<string name="CN050">快哭了</string>
+
+
+<string name="PY051">yx</string>
+<string name="CN051">阴险</string>
+
+
+<string name="PY052">qq</string>
+<string name="CN052">亲亲</string>
+
+
+<string name="PY053">xia</string>
+<string name="CN053">吓</string>
+
+
+<string name="PY054">kel</string>
+<string name="CN054">可怜</string>
+
+
+<string name="PY055">cd</string>
+<string name="CN055">菜刀</string>
+
+
+<string name="PY056">xig</string>
+<string name="CN056">西瓜</string>
+
+
+<string name="PY057">pj</string>
+<string name="CN057">啤酒</string>
+
+
+<string name="PY058">lq</string>
+<string name="CN058">篮球</string>
+
+
+<string name="PY059">pp</string>
+<string name="CN059">乒乓</string>
+
+
+<string name="PY060">kf</string>
+<string name="CN060">咖啡</string>
+
+
+<string name="PY061">fan</string>
+<string name="CN061">饭</string>
+
+
+<string name="PY062">zt</string>
+<string name="CN062">猪头</string>
+
+
+<string name="PY063">mg</string>
+<string name="CN063">玫瑰</string>
+
+
+<string name="PY064">dx</string>
+<string name="CN064">凋谢</string>
+
+
+<string name="PY065">sa</string>
+<string name="CN065">示爱</string>
+
+
+<string name="PY066">xin</string>
+<string name="CN066">爱心</string>
+
+
+<string name="PY067">xs</string>
+<string name="CN067">心碎</string>
+
+
+<string name="PY068">dg</string>
+<string name="CN068">蛋糕</string>
+
+
+<string name="PY069">shd</string>
+<string name="CN069">闪电</string>
+
+
+<string name="PY070">zhd</string>
+<string name="CN070">炸弹</string>
+
+
+<string name="PY071">dao</string>
+<string name="CN071">刀</string>
+
+
+<string name="PY072">zq</string>
+<string name="CN072">足球</string>
+
+
+<string name="PY073">pch</string>
+<string name="CN073">瓢虫</string>
+
+
+<string name="PY074">bb</string>
+<string name="CN074">便便</string>
+
+
+<string name="PY075">yl</string>
+<string name="CN075">月亮</string>
+
+
+<string name="PY076">ty</string>
+<string name="CN076">太阳</string>
+
+
+<string name="PY077">lw</string> 
+<string name="CN077">礼物</string>
+
+
+<string name="PY078">yb</string>
+<string name="CN078">拥抱</string>
+
+
+<string name="PY079">qiang</string>
+<string name="CN079">强</string>
+
+
+<string name="PY080">ruo</string>
+<string name="CN080">弱</string>
+
+
+<string name="PY081">ws</string>
+<string name="CN081">握手</string>
+
+
+<string name="PY082">shl</string>
+<string name="CN082">胜利</string>
+
+
+<string name="PY083">bq</string>
+<string name="CN083">抱拳</string>
+
+
+<string name="PY084">gy</string>
+<string name="CN084">勾引</string>
+
+
+<string name="PY085">qt</string>
+<string name="CN085">拳头</string>
+
+
+<string name="PY086">cj</string>
+<string name="CN086">差劲</string>
+
+
+<string name="PY087">aini</string>
+<string name="CN087">爱你</string>
+
+
+<string name="PY088">bu</string>
+<string name="CN088">NO</string>
+
+
+<string name="PY089">hd</string>
+<string name="CN089">OK</string>
+
+
+<string name="PY090">aiq</string>
+<string name="CN090">爱情</string>
+
+
+<string name="PY091">fw</string>
+<string name="CN091">飞吻</string>
+
+
+<string name="PY092">tiao</string>
+<string name="CN092">跳</string>
+
+
+<string name="PY093">fad</string>
+<string name="CN093">发抖</string>
+
+
+<string name="PY094">oh</string>
+<string name="CN094">怄火</string>
+
+
+<string name="PY095">zhq</string>
+<string name="CN095">转圈</string>
+
+
+<string name="PY096">kt</string>
+<string name="CN096">磕头</string>
+
+
+<string name="PY097">ht</string>
+<string name="CN097">回头</string>
+
+
+<string name="PY098">tsh</string>
+<string name="CN098">跳绳</string>
+
+
+<string name="PY099">hs</string>
+<string name="CN099">挥手</string>
+
+
+<string name="PY100">jd</string>
+<string name="CN100">激动</string>
+
+
+<string name="PY102">jw</string>
+<string name="CN102">街舞</string>
+
+
+<string name="PY103">ztj</string>
+<string name="CN103">左太极</string>
+
+
+<string name="PY104">ytj</string>
+<string name="CN104">右太极</string>
+
+
+<string name="PY105">fd</string>
+<string name="CN105">非典</string>
+
+
+<string name="PY106">zl</string>
+<string name="CN106">走了</string>
+
+
+<string name="PY107">fd</string>
+<string name="CN107">放大</string>
+
+
+<string name="PY108">qm</string>
+<string name="CN108">q妹</string>
+
+
+<string name="PY109">mao</string>
+<string name="CN109">猫</string>
+
+
+<string name="PY110">gou</string>
+<string name="CN110">狗</string>
+
+
+<string name="PY111">qian</string>
+<string name="CN111">钱</string>
+
+
+<string name="PY112">dp</string>
+<string name="CN112">灯泡</string>
+
+
+<string name="PY113">yl</string>
+<string name="CN113">饮料</string>
+
+
+<string name="PY114">yy</string>
+<string name="CN114">音乐</string>
+
+
+<string name="PY115">yw</string>
+<string name="CN115">药丸</string>
+
+
+<string name="PY116">wen</string>
+<string name="CN116">吻</string>
+
+
+<string name="PY117">zhz</string>
+<string name="CN117">桌子</string>
+
+
+<string name="PY118">dh</string>
+<string name="CN118">电话</string>
+
+
+<string name="PY119">shz</string>
+<string name="CN119">时钟</string>
+
+
+<string name="PY120">xin</string>
+<string name="CN120">信</string>
+
+
+<string name="PY121">dsh</string>
+<string name="CN121">电视</string>
+
+</resources>
