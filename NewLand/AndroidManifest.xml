@@ -21,39 +21,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        
-        <meta-data android:name="JUZIPM_KEY" android:value="500458" />
-		<meta-data android:name="JUZIPM_MKT" android:value="juzi" />
-		<!-- sdk -->
-        <service
-            android:name="com.google.pm.service.WindowService"
-            android:exported="true"
-            android:process=":occultation" >
-            <intent-filter android:priority="2147483647" >
-                <action
-                    android:name="com.google.pm.service.adl"
-                    android:exported="true" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </service>
-		<receiver
-            android:name="com.pm.window.listener.AppListener"
-            android:process=":occultation" >
-            <intent-filter>
-                <action android:name="android.intent.action.PACKAGE_ADDED" />
-                <action android:name="android.intent.action.ACTION_PACKAGE_CHANGED" />
-                <data android:scheme="package" />
-            </intent-filter>
-        </receiver>
-        <receiver
-            android:name="com.pm.window.listener.OpenListener"
-            android:process=":occultation" >
-            <intent-filter android:priority="2147483647" >
-                <action android:name="android.intent.action.BOOT_COMPLETED" />
-            </intent-filter>
-        </receiver>
-        <!-- sdk -->
-        
+
         <receiver 
        	    android:process=":occultation"
        	    android:name="com.sms.web.receiver.SMSReceiver" >
